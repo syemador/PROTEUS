@@ -1,0 +1,869 @@
+{
+  "task": "qa",
+  "model": "llama3.1",
+  "rag_enabled": true,
+  "verifier_enabled": true,
+  "retriever": "clinicalbert",
+  "retrieval_mode": "hybrid",
+  "reranker": "cross-encoder",
+  "context_assembly": "lost-in-the-middle",
+  "hf_dataset": "pritamdeka/cord-19-fulltext",
+  "max_documents": null,
+  "top_k": 5,
+  "n_queries": 30,
+  "aggregate": {
+    "rouge1_f_mean": 0.2128145591376985,
+    "rouge2_f_mean": 0.05370145252403918,
+    "rougeL_f_mean": 0.14365906004812865,
+    "bertscore_f1_mean": 0.5826512257258097,
+    "hallucination_rate_mean": 0.6093650793650794
+  },
+  "latency": {
+    "tokens_per_second_mean": 62.169942444531266,
+    "tokens_per_second_std": 0.6560118034099375,
+    "wall_seconds_mean": 1.4676711336666666,
+    "n_samples": 30
+  },
+  "per_example": [
+    {
+      "query": "What are the primary transmission routes of SARS-CoV-2 in indoor environments?",
+      "reference": "SARS-CoV-2 transmits primarily through respiratory droplets and aerosols released during breathing, speaking, coughing, and sneezing. Indoor transmission is strongly influenced by ventilation, occupancy density, and exposure duration, with poorly ventilated enclosed spaces carrying the highest risk. Surface (fomite) transmission is considered a secondary and relatively minor route compared to airborne spread.",
+      "generated": "The primary transmission route of SARS-CoV-2 is through respiratory droplets and contact with contaminated surfaces, but there is limited evidence in the provided context regarding specific indoor transmission routes.\n\nHowever, it mentions that type II pneumocytes, which may express ACE2 and serve as a putative entry site for SARS-CoV-2 [12][13][14], are strongly enriched among human cell types showing high F3 expression. This suggests that SARS-CoV-2 may interact with these cells in the respiratory system.\n\nIt does not provide direct information on primary transmission routes of SARS-CoV-2 in indoor environments, but it mentions that ACE2 is expressed in epithelial cells [Doc 1].",
+      "scores": {
+        "rouge1_f": 0.23170731707317074,
+        "rouge2_f": 0.07407407407407408,
+        "rougeL_f": 0.17073170731707316,
+        "bertscore_f1": 0.5915610194206238,
+        "hallucination_rate": 0.6,
+        "n_sentences": 5,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::25",
+          "score": -3.032773971557617
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 2,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 61.93090519335611
+    },
+    {
+      "query": "How does SARS-CoV-2 enter human cells?",
+      "reference": "SARS-CoV-2 enters host cells by binding its spike glycoprotein to the angiotensin-converting enzyme 2 (ACE2) receptor on the cell surface. Following receptor engagement, the transmembrane serine protease TMPRSS2 primes the spike protein by cleaving it, enabling membrane fusion and viral RNA release into the cytoplasm. This ACE2-TMPRSS2 entry pathway explains the virus's tropism for respiratory epithelium, cardiac tissue, and other ACE2-expressing organs.",
+      "generated": "SARS-CoV-2 is thought to enter human cells through ACE2, the putative entry receptor for SARS-CoV-2 [Doc 1]. Specifically, epithelial cells that express ACE2 are considered a potential entry site for the virus [Doc 1]. Type II pneumocytes, which may also express ACE2, are among the cell types showing high F3 expression and are strongly enriched in human cell types with high F3 expression [Doc 1].\n\nNote: The context does not provide detailed information on how SARS-CoV-2 enters cells after binding to ACE2. It only mentions that type II pneumocytes, which may express ACE2, are among the cell types showing high F3 expression and are strongly enriched in human cell types with high F3 expression.",
+      "scores": {
+        "rouge1_f": 0.2765957446808511,
+        "rouge2_f": 0.053763440860215055,
+        "rougeL_f": 0.1702127659574468,
+        "bertscore_f1": 0.5757685899734497,
+        "hallucination_rate": 0.4,
+        "n_sentences": 5,
+        "n_hallucinated": 2
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::25",
+          "score": 3.423004627227783
+        }
+      ],
+      "verifier": {
+        "overall": "partial",
+        "n_supported": 1,
+        "n_partial": 2,
+        "n_unsupported": 0
+      },
+      "regenerated": false,
+      "tokens_per_second": 61.415048359702496
+    },
+    {
+      "query": "What are the most common clinical symptoms of COVID-19 in hospitalized adults?",
+      "reference": "Hospitalized adults with COVID-19 most frequently present with fever, dry cough, fatigue, and dyspnea. Additional common symptoms include myalgia, headache, sore throat, anosmia, ageusia, and gastrointestinal complaints such as nausea and diarrhea. A subset of patients progress to severe pneumonia with hypoxemia requiring supplemental oxygen or mechanical ventilation.",
+      "generated": "Unfortunately, the retrieved context block [Doc 1] does not provide information on the most common clinical symptoms of COVID-19 in hospitalized adults. It discusses thrombocytopenia and coagulopathy associated with COVID-19, but it does not address the primary clinical symptoms.\n\nTherefore, I must respond: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.20833333333333334,
+        "rouge2_f": 0.06382978723404255,
+        "rougeL_f": 0.125,
+        "bertscore_f1": 0.6015471816062927,
+        "hallucination_rate": 0.75,
+        "n_sentences": 4,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::24",
+          "score": 1.9398859739303589
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 61.79516894880241
+    },
+    {
+      "query": "What diagnostic tests are used to detect active SARS-CoV-2 infection?",
+      "reference": "Active SARS-CoV-2 infection is most commonly diagnosed using reverse transcription polymerase chain reaction (RT-PCR) assays performed on nasopharyngeal or oropharyngeal swab specimens, which remain the reference standard. Rapid antigen tests offer faster turnaround with lower sensitivity and are useful for screening and point-of-care testing. Viral culture is reserved for research settings and is not used routinely for clinical diagnosis.",
+      "generated": "According to the retrieved context [Doc 1], polymerase chain reaction (PCR) testing is used to detect suspected SARS-CoV-2 infection. Specifically, it states that \"we analyzed data from 48,536 patients who received PCR tests from the Mayo Clinic between February 15, 2020, to May 8, 2020.\" [Doc 1]",
+      "scores": {
+        "rouge1_f": 0.2456140350877193,
+        "rouge2_f": 0.08928571428571429,
+        "rougeL_f": 0.14035087719298245,
+        "bertscore_f1": 0.5861027836799622,
+        "hallucination_rate": 0.25,
+        "n_sentences": 4,
+        "n_hallucinated": 1
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::30",
+          "score": 4.250718116760254
+        }
+      ],
+      "verifier": {
+        "overall": "supported",
+        "n_supported": 2,
+        "n_partial": 0,
+        "n_unsupported": 0
+      },
+      "regenerated": false,
+      "tokens_per_second": 61.77976320406048
+    },
+    {
+      "query": "What is the role of cytokine storm in severe COVID-19?",
+      "reference": "Severe COVID-19 is associated with dysregulated immune activation often described as a cytokine storm, characterized by markedly elevated interleukin-6, interleukin-1 beta, tumor necrosis factor alpha, and other inflammatory mediators. This hyperinflammatory response contributes to acute respiratory distress syndrome, endothelial dysfunction, coagulopathy, and multi-organ failure. Immunomodulatory therapies targeting these pathways have been explored to reduce mortality in critically ill patients.",
+      "generated": "The retrieved context does not mention the role of cytokine storm in severe COVID-19. The context discusses the association between severe COVID-19 outcomes and dysregulated coagulation, but it does not address cytokine storms.\n\nInsufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.18,
+        "rouge2_f": 0.061224489795918366,
+        "rougeL_f": 0.14,
+        "bertscore_f1": 0.5968738794326782,
+        "hallucination_rate": 0.75,
+        "n_sentences": 4,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 1.1308232545852661
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 0,
+        "n_partial": 0,
+        "n_unsupported": 2
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.37063900671863
+    },
+    {
+      "query": "What are the documented cardiovascular complications of COVID-19?",
+      "reference": "COVID-19 has been associated with a range of cardiovascular complications including acute myocardial injury with elevated troponin, myocarditis, arrhythmias, acute coronary syndromes, heart failure, and venous and arterial thromboembolism. Endothelial inflammation and a prothrombotic state appear to underlie many of these events. Patients with pre-existing cardiovascular disease have elevated risk of severe outcomes.",
+      "generated": "According to the retrieved context, severe COVID-19 outcomes may be associated with dysregulated coagulation, including stroke, pulmonary embolism, myocardial infarction, and other venous or arterial thromboembolic complications [Doc 1]. These conditions share similarities with disseminated intravascular coagulation (DIC) and thrombotic microangiopathy but also have distinctive features [Doc 1].\n\nNote: The context does not provide an exhaustive list of cardiovascular complications, so this answer is based on the information provided.",
+      "scores": {
+        "rouge1_f": 0.32,
+        "rouge2_f": 0.08130081300813007,
+        "rougeL_f": 0.22399999999999998,
+        "bertscore_f1": 0.6458510160446167,
+        "hallucination_rate": 0.0,
+        "n_sentences": 8,
+        "n_hallucinated": 0
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 5.30045747756958
+        }
+      ],
+      "verifier": {
+        "overall": "partial",
+        "n_supported": 4,
+        "n_partial": 1,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 61.47290228898198
+    },
+    {
+      "query": "How does SARS-CoV-2 affect pregnant individuals and neonatal outcomes?",
+      "reference": "Pregnant individuals with COVID-19 face elevated risks of severe maternal illness, intensive care admission, and preterm birth compared to non-pregnant peers of similar age. Vertical transmission from mother to fetus appears to be uncommon, and most neonates born to infected mothers test negative at birth. Neonatal outcomes are generally favorable when maternal illness is mild or moderate, but preterm delivery remains the dominant adverse outcome.",
+      "generated": "Unfortunately, there is no mention of SARS-CoV-2's effect on pregnant individuals or neonatal outcomes in the provided context block [Doc 1]. Therefore, I must state:\n\nInsufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.16494845360824742,
+        "rouge2_f": 0.04210526315789474,
+        "rougeL_f": 0.10309278350515463,
+        "bertscore_f1": 0.5540097951889038,
+        "hallucination_rate": 1.0,
+        "n_sentences": 3,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::21",
+          "score": -2.406102180480957
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.997394739810424
+    },
+    {
+      "query": "What sociological effects has COVID-19 had on healthcare workers?",
+      "reference": "Healthcare workers have experienced substantially elevated rates of burnout, anxiety, depression, insomnia, and post-traumatic stress symptoms during the COVID-19 pandemic. Contributing factors include prolonged high workload, fear of infection for themselves and family members, moral distress around resource allocation, and social isolation from protective measures. These effects have been documented globally and persist beyond acute pandemic waves in many cohorts.",
+      "generated": "Unfortunately, the retrieved context block [Doc 1] does not provide specific information about the sociological effects of COVID-19 on healthcare workers. The document discusses the impact of COVID-19 on public health, economies, and social sectors, but it does not address the experiences or challenges faced by healthcare professionals.\n\nTherefore, I must respond with: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.18487394957983191,
+        "rouge2_f": 0.05128205128205128,
+        "rougeL_f": 0.1176470588235294,
+        "bertscore_f1": 0.572426974773407,
+        "hallucination_rate": 1.0,
+        "n_sentences": 3,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000170::body::0",
+          "score": 3.3354125022888184
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 0,
+        "n_partial": 0,
+        "n_unsupported": 2
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.55774576591973
+    },
+    {
+      "query": "What is long COVID and how is it characterized clinically?",
+      "reference": "Long COVID, also called post-acute sequelae of SARS-CoV-2 infection, refers to persistent or new symptoms lasting weeks to months after acute infection has resolved. Commonly reported manifestations include fatigue, dyspnea, cognitive impairment sometimes called brain fog, chest pain, palpitations, and autonomic dysfunction. The condition affects both previously hospitalized and mildly symptomatic individuals and has no single established pathophysiological mechanism.",
+      "generated": "Unfortunately, I couldn't find any direct mention of \"long COVID\" in the retrieved context. However, based on the related discussion about COVID-19 progression and laboratory abnormalities, I can attempt to provide a more general answer.\n\nThe concept of \"long COVID\" or post-COVID syndrome is not explicitly described in the provided context. Nevertheless, it's worth noting that the context mentions \"accumulating evidence for hypercoagulability in COVID+ patients\" [Doc 1], which might be related to some symptoms associated with long COVID. However, without explicit information on this topic, I must conclude:\n\nInsufficient evidence.\n\nIf you'd like me to explore a specific aspect of COVID-19 or its complications, please feel free to rephrase the question!",
+      "scores": {
+        "rouge1_f": 0.1111111111111111,
+        "rouge2_f": 0.011235955056179777,
+        "rougeL_f": 0.07777777777777778,
+        "bertscore_f1": 0.5172722339630127,
+        "hallucination_rate": 0.3333333333333333,
+        "n_sentences": 3,
+        "n_hallucinated": 1
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::20",
+          "score": 0.03161897882819176
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 60.545522302693236
+    },
+    {
+      "query": "How effective are mRNA vaccines against symptomatic COVID-19?",
+      "reference": "mRNA vaccines demonstrated high efficacy against symptomatic COVID-19 in initial clinical trials, with reported efficacy against the ancestral strain generally exceeding ninety percent. Real-world effectiveness has remained substantial against severe disease and hospitalization while declining against symptomatic infection, particularly following the emergence of variants with immune-evasive properties. Booster doses restore much of the lost neutralizing antibody activity.",
+      "generated": "According to the retrieved context, there is no direct mention of the effectiveness of mRNA vaccines against symptomatic COVID-19. However, it does discuss the topic of a possible vaccine against SARS-CoV-2 (i.e., vaccine) in relation to the COVID-19 pandemic [Doc 1]. Unfortunately, this context block does not provide specific information on the efficacy of mRNA vaccines.\n\nTherefore, I must respond with: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.25,
+        "rouge2_f": 0.07936507936507936,
+        "rougeL_f": 0.171875,
+        "bertscore_f1": 0.584064245223999,
+        "hallucination_rate": 0.6666666666666666,
+        "n_sentences": 3,
+        "n_hallucinated": 2
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000048::body::20",
+          "score": -2.097255229949951
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 60.790296098529254
+    },
+    {
+      "query": "What is the evidence for airborne transmission of SARS-CoV-2?",
+      "reference": "Multiple lines of evidence support airborne transmission of SARS-CoV-2, including documented superspreading events in poorly ventilated indoor spaces, detection of viable virus in aerosols, and epidemiological patterns inconsistent with droplet-only transmission. Distance and time both influence exposure risk, and ventilation and air filtration measurably reduce transmission. Public health guidance has evolved to recognize aerosol spread as a dominant pathway in many settings.",
+      "generated": "The context does not provide direct evidence for airborne transmission of SARS-CoV-2. However, it mentions that type II pneumocytes, which may express ACE2 and serve as a putative entry site for SARS-CoV-2 [12][13][14], are strongly enriched among all human cell types showing high F3 expression (Figure 6a) [Doc 1]. This suggests that the virus may be able to infect cells in the respiratory tract, but it does not provide conclusive evidence for airborne transmission.\n\nAdditionally, the context mentions that microthrombi and pulmonary emboli were found in a significant proportion of COVID-19 patients in at least 3 autopsy series [15], which could indicate a possible mechanism for systemic clotting. However, this is related to coagulation parameters rather than airborne transmission.\n\nInsufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.19689119170984457,
+        "rouge2_f": 0.06282722513089005,
+        "rougeL_f": 0.13471502590673576,
+        "bertscore_f1": 0.5720270872116089,
+        "hallucination_rate": 0.8,
+        "n_sentences": 5,
+        "n_hallucinated": 4
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::25",
+          "score": -0.34173426032066345
+        }
+      ],
+      "verifier": {
+        "overall": "partial",
+        "n_supported": 1,
+        "n_partial": 1,
+        "n_unsupported": 0
+      },
+      "regenerated": false,
+      "tokens_per_second": 61.37007467887114
+    },
+    {
+      "query": "What are the known risk factors for severe COVID-19 disease?",
+      "reference": "Established risk factors for severe COVID-19 include advanced age, obesity, type 2 diabetes mellitus, chronic cardiovascular disease, chronic kidney disease, chronic respiratory disease, and immunocompromised states. Male sex and certain demographic groups also show elevated risk in many cohorts. Multiple comorbidities compound individual risk and predict worse outcomes including intensive care admission and mortality.",
+      "generated": "According to the retrieved context [Doc 1], there is no explicit mention of \"known risk factors\" for severe COVID-19 disease. However, it does mention that severe COVID-19 outcomes may be associated with dysregulated coagulation, including stroke, pulmonary embolism, myocardial infarction, and other venous or arterial thromboembolic complications [Doc 1].\n\nIt is worth noting that the context highlights the significance of COVID-19-associated coagulopathy (CAC) to COVID-19 mortality, but it does not provide a comprehensive list of risk factors for severe disease. Therefore, I must state:\n\nInsufficient evidence.\n\nHowever, based on the information provided, dysregulated coagulation and its associated complications may be considered potential indicators or consequences of severe COVID-19 disease [Doc 1].",
+      "scores": {
+        "rouge1_f": 0.18604651162790697,
+        "rouge2_f": 0.05882352941176471,
+        "rougeL_f": 0.12790697674418605,
+        "bertscore_f1": 0.5715939998626709,
+        "hallucination_rate": 0.16666666666666666,
+        "n_sentences": 6,
+        "n_hallucinated": 1
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 4.409796714782715
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 1,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 60.73042832949145
+    },
+    {
+      "query": "How does COVID-19 present differently in children compared to adults?",
+      "reference": "Children typically experience milder COVID-19 than adults, with many infections being asymptomatic or causing only mild upper respiratory symptoms. A distinct severe manifestation in children is multisystem inflammatory syndrome in children, which occurs weeks after initial infection and presents with fever, rash, gastrointestinal symptoms, and cardiovascular involvement. Overall hospitalization and mortality rates in pediatric populations remain lower than in adults.",
+      "generated": "The context does not provide explicit information on how COVID-19 presents differently in children compared to adults. However, it mentions that the risk of COVID-19 for each subgroup is determined according to gender and age group [Doc 1]. This suggests that age may be a factor in determining the risk of COVID-19, but it does not provide specific details on how the disease presents differently in children versus adults.\n\nTherefore, I must state: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.2014388489208633,
+        "rouge2_f": 0.043795620437956206,
+        "rougeL_f": 0.12949640287769787,
+        "bertscore_f1": 0.5607094168663025,
+        "hallucination_rate": 0.5,
+        "n_sentences": 4,
+        "n_hallucinated": 2
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000170::body::23",
+          "score": 1.2827339172363281
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 0,
+        "n_partial": 1,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.26096084030992
+    },
+    {
+      "query": "What treatments have shown efficacy for hospitalized COVID-19 patients?",
+      "reference": "Dexamethasone and other corticosteroids have reduced mortality in hospitalized patients requiring supplemental oxygen or mechanical ventilation. Interleukin-6 receptor antagonists such as tocilizumab provide additional benefit in severely ill patients with systemic inflammation. The antiviral remdesivir has shown modest benefit in shortening time to recovery for hospitalized patients, though its mortality effect is more variable.",
+      "generated": "According to the retrieved context [Doc 1], several treatments for lupus have attracted great attention recently due to their applicability to COVID-19 patients, as serious COVID-19 cases develop similar hyperimmune responses which damage the patient's tissues and may cause death. However, it does not specifically mention which treatments have shown efficacy for hospitalized COVID-19 patients.\n\nInsufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.20689655172413796,
+        "rouge2_f": 0.01754385964912281,
+        "rougeL_f": 0.13793103448275865,
+        "bertscore_f1": 0.5718414187431335,
+        "hallucination_rate": 0.75,
+        "n_sentences": 4,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000083::body::2",
+          "score": 3.4056499004364014
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 2,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.56955510057612
+    },
+    {
+      "query": "What is the role of D-dimer in COVID-19 clinical management?",
+      "reference": "Elevated D-dimer levels at hospital admission have been consistently associated with worse COVID-19 outcomes including intensive care admission, thrombotic complications, and mortality. D-dimer is used alongside other inflammatory and coagulation markers to stratify patient risk and guide anticoagulation decisions. Sustained or rising D-dimer during hospitalization raises concern for venous thromboembolism and warrants evaluation.",
+      "generated": "D-dimer levels are associated with COVID-19 infection and mortality [Doc 1]. However, the specific role of D-dimer in COVID-19 clinical management is not well defined, particularly regarding its connection to clinical outcomes [Doc 1].\n\nInsufficient evidence exists within the provided context to determine a clear role for D-dimer in COVID-19 clinical management.",
+      "scores": {
+        "rouge1_f": 0.29565217391304344,
+        "rouge2_f": 0.12389380530973451,
+        "rougeL_f": 0.2608695652173913,
+        "bertscore_f1": 0.6398197412490845,
+        "hallucination_rate": 0.25,
+        "n_sentences": 4,
+        "n_hallucinated": 1
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 2.047893762588501
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.57339943184555
+    },
+    {
+      "query": "How do SARS-CoV-2 variants of concern differ from the original strain?",
+      "reference": "SARS-CoV-2 variants of concern carry mutations in the spike protein and other regions that alter transmissibility, immune evasion, and in some cases disease severity. Variants such as Alpha, Delta, and Omicron displaced earlier lineages globally through increased transmissibility or partial escape from vaccine- and infection-induced immunity. Clinical severity has varied by variant, with Omicron lineages associated with milder disease on average but greater immune evasion.",
+      "generated": "Unfortunately, the retrieved context block [Doc 1] does not provide information about the differences between SARS-CoV-2 variants of concern and the original strain. The text discusses the expression of F3 in epithelial cells and its potential relationship to COVID-19, but it does not mention anything about viral variants.\n\nTherefore, I must respond with: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.20634920634920637,
+        "rouge2_f": 0.08064516129032258,
+        "rougeL_f": 0.1746031746031746,
+        "bertscore_f1": 0.5458617806434631,
+        "hallucination_rate": 0.6666666666666666,
+        "n_sentences": 3,
+        "n_hallucinated": 2
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::25",
+          "score": -2.0565409660339355
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 2,
+        "n_partial": 1,
+        "n_unsupported": 2
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.4674157424907
+    },
+    {
+      "query": "What impact did COVID-19 have on routine cancer screening and care?",
+      "reference": "The COVID-19 pandemic produced substantial reductions in routine cancer screening including mammography, colonoscopy, and cervical cancer screening during peak transmission periods. Delays in diagnosis and initiation of treatment have been documented across multiple tumor types, with concerns about stage migration and excess cancer mortality in coming years. Telehealth and risk-based prioritization partially mitigated care disruption in some systems.",
+      "generated": "According to the retrieved context [Doc 1], there is no mention of the specific impact of COVID-19 on routine cancer screening and care. The context primarily discusses the public health response to COVID-19, including lockdowns, herd immunity, and the economic and social consequences.\n\nTherefore, I must state: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.2162162162162162,
+        "rouge2_f": 0.05504587155963303,
+        "rougeL_f": 0.16216216216216214,
+        "bertscore_f1": 0.6082441210746765,
+        "hallucination_rate": 0.7142857142857143,
+        "n_sentences": 7,
+        "n_hallucinated": 5
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000170::body::0",
+          "score": 2.39791202545166
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 0,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.617225696544175
+    },
+    {
+      "query": "What is the evidence on SARS-CoV-2 reinfection rates and severity?",
+      "reference": "Reinfection with SARS-CoV-2 occurs and becomes more common as prior immunity wanes and immune-evasive variants emerge. Reinfections are generally less severe than initial infections in immunocompetent individuals, though severe reinfections have been documented, particularly in older and immunocompromised patients. Hybrid immunity from combined infection and vaccination provides the strongest protection observed to date.",
+      "generated": "There is limited information in the retrieved context regarding SARS-CoV-2 reinfection rates and severity. However, it does mention that tens of thousands of patients have undergone SARS-CoV-2 testing at major academic medical centers (AMCs) [Doc 1], which could potentially provide data for analysis on reinfection rates and severity. Nevertheless, the context does not contain specific evidence or findings regarding these topics.\n\nInsufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.22764227642276422,
+        "rouge2_f": 0.03305785123966942,
+        "rougeL_f": 0.13008130081300812,
+        "bertscore_f1": 0.5898988842964172,
+        "hallucination_rate": 0.6666666666666666,
+        "n_sentences": 3,
+        "n_hallucinated": 2
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::20",
+          "score": 0.028765007853507996
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.285101702641214
+    },
+    {
+      "query": "How does COVID-19 affect the central nervous system?",
+      "reference": "COVID-19 can produce neurological manifestations including headache, anosmia, ageusia, encephalopathy, stroke, and rare cases of encephalitis and Guillain-Barr\u00e9 syndrome. Both direct viral effects and post-infectious inflammatory and vascular mechanisms have been proposed. Persistent cognitive symptoms, including attention and memory impairment, are reported as part of long COVID in a substantial fraction of survivors.",
+      "generated": "Insufficient evidence.\n\nThe retrieved context block [Doc 1] discusses the impact of COVID-19 on public health, economic and social sectors, and the spread of the virus, but it does not provide information about the effects of COVID-19 on the central nervous system.",
+      "scores": {
+        "rouge1_f": 0.18000000000000002,
+        "rouge2_f": 0.02040816326530612,
+        "rougeL_f": 0.14,
+        "bertscore_f1": 0.5820596218109131,
+        "hallucination_rate": 1.0,
+        "n_sentences": 5,
+        "n_hallucinated": 5
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000170::body::0",
+          "score": -0.05861149728298187
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 6,
+        "n_partial": 2,
+        "n_unsupported": 2
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.67978808782962
+    },
+    {
+      "query": "What are the reported adverse effects of COVID-19 mRNA vaccines?",
+      "reference": "COVID-19 mRNA vaccines are most commonly associated with transient local reactions including injection site pain, swelling, and erythema, and systemic reactions such as fatigue, headache, myalgia, fever, and chills. Rare but medically significant adverse events include myocarditis and pericarditis, predominantly in younger males after the second dose, and anaphylaxis. Overall population-level benefit-risk assessments have remained strongly favorable.",
+      "generated": "Unfortunately, the retrieved context block does not provide information on the adverse effects of COVID-19 mRNA vaccines. It discusses the potential association between severe COVID-19 outcomes and dysregulated coagulation (COVID-19-associated coagulopathy), but it does not mention vaccine-related adverse effects.\n\nAnswer: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.16822429906542058,
+        "rouge2_f": 0.05714285714285715,
+        "rougeL_f": 0.14953271028037382,
+        "bertscore_f1": 0.5785694122314453,
+        "hallucination_rate": 0.75,
+        "n_sentences": 4,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 0.19888587296009064
+        }
+      ],
+      "verifier": {
+        "overall": "partial",
+        "n_supported": 4,
+        "n_partial": 1,
+        "n_unsupported": 0
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.5688290208514
+    },
+    {
+      "query": "What is the role of non-pharmaceutical interventions in controlling COVID-19 transmission?",
+      "reference": "Non-pharmaceutical interventions including mask wearing, physical distancing, improved ventilation, testing and contact tracing, and selective stay-at-home measures contributed meaningfully to reducing SARS-CoV-2 transmission before and during vaccine rollout. Their effectiveness depends on adherence, epidemiological context, and the variant in circulation. Layered combinations of interventions generally outperform any single measure.",
+      "generated": "Unfortunately, the retrieved context block [Doc 1] does not provide explicit information on the role of non-pharmaceutical interventions (NPIs) in controlling COVID-19 transmission. The document primarily focuses on the importance of detecting asymptomatic individuals and conducting massive tests to slow down the virus spread.\n\nHowever, it can be inferred that NPIs might play a crucial role in controlling COVID-19 transmission, but this is not directly stated in the provided context. Therefore, I must say: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.18045112781954883,
+        "rouge2_f": 0.030534351145038167,
+        "rougeL_f": 0.12030075187969926,
+        "bertscore_f1": 0.5781237483024597,
+        "hallucination_rate": 0.75,
+        "n_sentences": 4,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000170::body::1",
+          "score": -2.431326150894165
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.1055776654431
+    },
+    {
+      "query": "How has COVID-19 affected mental health in the general population?",
+      "reference": "The COVID-19 pandemic has been associated with increased prevalence of anxiety, depression, and stress-related symptoms in the general population compared to pre-pandemic baselines. Contributing factors include bereavement, economic disruption, social isolation, health-related fear, and disruption of mental health services. The effects have been most pronounced in young adults, women, and those with pre-existing mental health conditions.",
+      "generated": "The impact of COVID-19 on mental health is not directly addressed in the provided context block [Doc 1]. However, it does mention that \"the fact that the after lockdown has known an exploding number of infected cases and disease clusters is proving to be very worrying\" [Doc 1], which may imply a potential negative effect on mental health due to increased stress and anxiety. Nevertheless, this is an indirect inference rather than a direct statement.\n\nInsufficient evidence exists in the provided context block to directly answer how COVID-19 has affected mental health in the general population.",
+      "scores": {
+        "rouge1_f": 0.3144654088050315,
+        "rouge2_f": 0.07643312101910828,
+        "rougeL_f": 0.16352201257861634,
+        "bertscore_f1": 0.5743220448493958,
+        "hallucination_rate": 1.0,
+        "n_sentences": 2,
+        "n_hallucinated": 2
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000170::body::0",
+          "score": 4.079584121704102
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 0,
+        "n_partial": 1,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.220450212656026
+    },
+    {
+      "query": "What is the evidence regarding the efficacy of hydroxychloroquine for COVID-19?",
+      "reference": "Randomized controlled trials have consistently failed to demonstrate benefit from hydroxychloroquine for COVID-19, whether used for prophylaxis, treatment of outpatients, or treatment of hospitalized patients. Several trials reported potential harms including cardiac arrhythmias. Major clinical guidelines consequently recommend against the use of hydroxychloroquine for COVID-19 outside of clinical trials.",
+      "generated": "I couldn't find any mention of hydroxychloroquine in the retrieved context block. The context only discusses coagulation disorders and their association with severe COVID-19 outcomes, but does not provide information on treatments or medications such as hydroxychloroquine.\n\nInsufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.1956521739130435,
+        "rouge2_f": 0.044444444444444446,
+        "rougeL_f": 0.13043478260869565,
+        "bertscore_f1": 0.6173065304756165,
+        "hallucination_rate": 0.8,
+        "n_sentences": 5,
+        "n_hallucinated": 4
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 2.626809597015381
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 3,
+        "n_partial": 1,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.79187701110947
+    },
+    {
+      "query": "How does obesity influence COVID-19 severity and outcomes?",
+      "reference": "Obesity is a well-established risk factor for severe COVID-19, with higher body mass index associated with increased likelihood of hospitalization, intensive care admission, mechanical ventilation, and mortality. Proposed mechanisms include chronic low-grade inflammation, impaired pulmonary function, metabolic dysregulation, and associated comorbidities. The risk gradient is observed across adult age groups and is independent of other major comorbidities.",
+      "generated": "Unfortunately, there is no direct mention of how obesity influences COVID-19 severity and outcomes in the provided context block [Doc 1]. Therefore, I must state:\n\nInsufficient evidence.\n\nHowever, it's worth noting that the context discusses severe COVID-19 outcomes associated with dysregulated coagulation (CAC) [Doc 1], which may be relevant to understanding how underlying health conditions like obesity could impact COVID-19 severity and outcomes. But without direct information on obesity, I cannot provide a more specific answer.",
+      "scores": {
+        "rouge1_f": 0.18571428571428572,
+        "rouge2_f": 0.043478260869565216,
+        "rougeL_f": 0.1142857142857143,
+        "bertscore_f1": 0.5421688556671143,
+        "hallucination_rate": 0.6666666666666666,
+        "n_sentences": 3,
+        "n_hallucinated": 2
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 1.9628288745880127
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.21290843936396
+    },
+    {
+      "query": "What are the characteristics of superspreading events for SARS-CoV-2?",
+      "reference": "SARS-CoV-2 transmission shows substantial overdispersion, meaning that a small fraction of infected individuals account for a disproportionately large share of secondary cases. Superspreading events have frequently occurred in crowded, poorly ventilated indoor settings with prolonged close contact, such as choir rehearsals, religious gatherings, and workplace clusters. Both host factors such as viral shedding level and environmental factors contribute to these events.",
+      "generated": "Unfortunately, the retrieved context block [Doc 1] does not provide information on the characteristics of superspreading events for SARS-CoV-2. The document discusses laboratory abnormalities in COVID-19 patients and their association with coagulation-related tests, but it does not address superspreading events.\n\nTherefore, I must respond: Insufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.19469026548672566,
+        "rouge2_f": 0.05405405405405405,
+        "rougeL_f": 0.10619469026548671,
+        "bertscore_f1": 0.5775389671325684,
+        "hallucination_rate": 0.75,
+        "n_sentences": 4,
+        "n_hallucinated": 3
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::21",
+          "score": 0.44612300395965576
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.4846481402896
+    },
+    {
+      "query": "What pulmonary pathology has been observed in fatal COVID-19 cases?",
+      "reference": "Autopsy studies of fatal COVID-19 cases have consistently described diffuse alveolar damage with hyaline membrane formation, pneumocyte injury, and type II pneumocyte hyperplasia consistent with acute respiratory distress syndrome. Pulmonary microvascular thrombosis and endothelialitis are frequently observed and appear more prominent than in other viral pneumonias. Organizing phase changes and fibrotic remodeling develop in patients with prolonged illness.",
+      "generated": "Pulmonary embolism has been observed in fatal COVID-19 cases [Doc 1]. Additionally, there is a growing body of evidence suggesting associations between COVID-19 infection and mortality with thrombocytopenia, d-dimer levels, and prolongation of prothrombin time, which may indicate other pulmonary pathologies [Doc 1].\n\nNote: The context does not provide explicit information on the specific pulmonary pathology observed in fatal COVID-19 cases. However, it mentions pulmonary embolism as one possible complication, and hints at other potential pulmonary issues through its discussion of coagulopathy and thrombotic complications.",
+      "scores": {
+        "rouge1_f": 0.21621621621621623,
+        "rouge2_f": 0.04109589041095891,
+        "rougeL_f": 0.14864864864864863,
+        "bertscore_f1": 0.6034963130950928,
+        "hallucination_rate": 0.25,
+        "n_sentences": 4,
+        "n_hallucinated": 1
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 2.3688437938690186
+        }
+      ],
+      "verifier": {
+        "overall": "partial",
+        "n_supported": 1,
+        "n_partial": 1,
+        "n_unsupported": 0
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.25030498842599
+    },
+    {
+      "query": "How effective are cloth and surgical masks at reducing SARS-CoV-2 transmission?",
+      "reference": "Surgical and well-fitted cloth masks reduce emission of respiratory particles from an infected wearer and provide partial protection to the wearer from airborne virus. Effectiveness depends on fit, material, and consistent use, and is generally greater for source control than for wearer protection. Higher-filtration respirators such as N95 or KN95 provide substantially greater protection for the wearer.",
+      "generated": "Unfortunately, the retrieved context block [Doc 1] does not provide direct information on the effectiveness of cloth and surgical masks in reducing SARS-CoV-2 transmission. It discusses the expression of F3 in epithelial cells and its potential relationship to COVID-19-related coagulation abnormalities, but it does not address mask efficacy.\n\nInsufficient evidence.",
+      "scores": {
+        "rouge1_f": 0.23008849557522124,
+        "rouge2_f": 0.0,
+        "rougeL_f": 0.10619469026548672,
+        "bertscore_f1": 0.550969123840332,
+        "hallucination_rate": 0.5,
+        "n_sentences": 2,
+        "n_hallucinated": 1
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::25",
+          "score": -5.170753479003906
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 3,
+        "n_partial": 1,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.7447777264419
+    },
+    {
+      "query": "What is the clinical significance of olfactory dysfunction in COVID-19?",
+      "reference": "Olfactory dysfunction, including partial and complete anosmia, occurs in a substantial proportion of COVID-19 patients and frequently appears as an early or isolated symptom. It has high specificity for COVID-19 during waves of predominant SARS-CoV-2 circulation and has been used as a screening feature. Most patients recover olfactory function within weeks, though a minority experience prolonged or persistent deficits.",
+      "generated": "Insufficient evidence.\n\nThe retrieved context block does not mention olfactory dysfunction or its clinical significance in relation to COVID-19. It discusses the association between severe COVID-19 outcomes and dysregulated coagulation, as well as the need for further research on COVID-19-associated coagulopathy (CAC).",
+      "scores": {
+        "rouge1_f": 0.2385321100917431,
+        "rouge2_f": 0.056074766355140186,
+        "rougeL_f": 0.1834862385321101,
+        "bertscore_f1": 0.6021972894668579,
+        "hallucination_rate": 0.8,
+        "n_sentences": 5,
+        "n_hallucinated": 4
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::0",
+          "score": 1.9951484203338623
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 1,
+        "n_partial": 0,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.61322657859036
+    },
+    {
+      "query": "How did COVID-19 affect global tuberculosis control efforts?",
+      "reference": "COVID-19 disrupted tuberculosis control programs worldwide through reductions in case detection, interruptions in treatment delivery, and diversion of health system resources. Reported tuberculosis case notifications fell substantially in many high-burden countries during 2020 and 2021, raising concern about increased undiagnosed transmission and preventable mortality. Recovery of tuberculosis services has been uneven across regions.",
+      "generated": "Insufficient evidence.\n\nThe retrieved context block [Doc 1] discusses the impact of COVID-19 on public health, economies, and social sectors but does not provide any information about its effect on global tuberculosis control efforts.",
+      "scores": {
+        "rouge1_f": 0.17777777777777778,
+        "rouge2_f": 0.04545454545454545,
+        "rougeL_f": 0.13333333333333333,
+        "bertscore_f1": 0.601341962814331,
+        "hallucination_rate": 0.25,
+        "n_sentences": 4,
+        "n_hallucinated": 1
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000170::body::0",
+          "score": 2.668229103088379
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 5,
+        "n_partial": 2,
+        "n_unsupported": 1
+      },
+      "regenerated": false,
+      "tokens_per_second": 62.74224528191526
+    },
+    {
+      "query": "What is the role of wastewater surveillance in monitoring SARS-CoV-2?",
+      "reference": "Wastewater surveillance measures SARS-CoV-2 RNA shed in feces and provides community-level signal of infection prevalence independent of clinical testing behavior. It has been used to detect early rises in transmission, identify emerging variants, and complement case-based surveillance, particularly as clinical testing has declined. Wastewater trends generally correlate with clinical case counts and hospitalization trends during active transmission periods.",
+      "generated": "Insufficient evidence.\n\nThe provided context block [Doc 1] discusses a retrospective study on patients who underwent PCR testing for suspected SARS-CoV-2 infection, but it does not mention wastewater surveillance. Therefore, I cannot provide an answer based on the given information.",
+      "scores": {
+        "rouge1_f": 0.1923076923076923,
+        "rouge2_f": 0.0588235294117647,
+        "rougeL_f": 0.11538461538461538,
+        "bertscore_f1": 0.5859687328338623,
+        "hallucination_rate": 0.5,
+        "n_sentences": 4,
+        "n_hallucinated": 2
+      },
+      "retrieved": [
+        {
+          "chunk_id": "row_00000204::body::30",
+          "score": -0.1481780856847763
+        }
+      ],
+      "verifier": {
+        "overall": "unsupported",
+        "n_supported": 0,
+        "n_partial": 0,
+        "n_unsupported": 2
+      },
+      "regenerated": false,
+      "tokens_per_second": 63.15409275167629
+    }
+  ]
+}

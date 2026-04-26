@@ -1,0 +1,37 @@
+# P.R.O.T.E.U.S. runtime dependencies
+# Tested on WSL2 Ubuntu 22.04 + Python 3.10 + CUDA 12.1 (RTX 3060 12 GB).
+#
+# PyTorch must be installed separately with a CUDA-12.1 build BEFORE running
+# `pip install -r requirements.txt`:
+#
+#   pip install torch==2.3.1 --index-url https://download.pytorch.org/whl/cu121
+#
+# Ollama is NOT a Python package — install the daemon from https://ollama.com
+# and pull the required models:
+#
+#   ollama pull llama3.1:8b-instruct-q4_K_M
+#   ollama pull llama3.2:1b-instruct-q4_K_M
+
+# --- Core HF / retrieval stack ---
+transformers==4.44.2
+tokenizers==0.19.1
+sentence-transformers==3.0.1
+huggingface-hub==0.24.6
+safetensors==0.4.5
+
+# --- Data handling ---
+datasets==2.20.0
+pandas==2.2.2
+numpy==1.26.4
+
+# --- Evaluation metrics ---
+rouge-score==0.1.2
+bert-score==0.3.13
+scikit-learn==1.5.1
+
+# --- Networking / HTTP ---
+requests==2.32.3
+urllib3==2.2.2
+
+# --- Utilities ---
+tqdm==4.66.5

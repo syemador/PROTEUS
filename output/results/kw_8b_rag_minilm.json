@@ -1,0 +1,1637 @@
+{
+  "task": "keywords",
+  "model": "llama3.1",
+  "backend": "ollama",
+  "rag_enabled": true,
+  "verifier_enabled": false,
+  "verifier_mode": "standard",
+  "retriever": "minilm",
+  "retrieval_mode": "hybrid",
+  "reranker": "cross-encoder",
+  "context_assembly": "lost-in-the-middle",
+  "hf_dataset": "pritamdeka/cord-19-fulltext",
+  "max_documents": null,
+  "top_k": 5,
+  "n_queries": 25,
+  "aggregate": {
+    "micro_precision_mean": 0.050044178044178045,
+    "micro_recall_mean": 0.04164979464979465,
+    "micro_f1_mean": 0.043464787352659205,
+    "symptoms_precision_mean": 0.0,
+    "symptoms_recall_mean": 0.0,
+    "symptoms_f1_mean": 0.0,
+    "diagnostics_precision_mean": 0.008,
+    "diagnostics_recall_mean": 0.006666666666666666,
+    "diagnostics_f1_mean": 0.007272727272727272,
+    "pathogens_precision_mean": 0.4,
+    "pathogens_recall_mean": 0.35333333333333333,
+    "pathogens_f1_mean": 0.36666666666666664
+  },
+  "latency": {
+    "tokens_per_second_mean": 60.424937762231295,
+    "tokens_per_second_std": 1.9659102498442418,
+    "wall_seconds_mean": 5.3531471446,
+    "n_samples": 25
+  },
+  "per_example": [
+    {
+      "query": "SARS-CoV-2 viremia and myocardial injury",
+      "gold": {
+        "Symptoms": [
+          "chest pain",
+          "dyspnea",
+          "palpitations",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "troponin",
+          "electrocardiogram",
+          "echocardiography",
+          "cardiac MRI"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "Covid-19 diagnosis",
+          "Fibrinogen elevation",
+          "Platelets abnormalities"
+        ],
+        "Diagnostics": [
+          "Polymerase chain reaction (PCR) test",
+          "Tissue factor expression",
+          "Single cell RNA sequencing data"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I have extracted relevant medical entities related to SARS-CoV-2 viremia and myocardial injury. Here are the results:\n\n```\n{\n  \"Symptoms\": [\n    \"Covid-19 diagnosis\",\n    \"Fibrinogen elevation\",\n    \"Platelets abnormalities\"\n  ],\n  \"Diagnostics\": [\n    \"Polymerase chain reaction (PCR) test\",\n    \"Tissue factor expression\",\n    \"Single cell RNA sequencing data\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nThese entities are relevant to the user query and have been categorized accordingly:\n\n* Symptoms: Covid-19 diagnosis, Fibrinogen elevation, Platelets abnormalities\n* Diagnostics: Polymerase chain reaction (PCR) test, Tissue factor expression, Single cell RNA sequencing data\n* Pathogens: SARS-CoV-2",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.14285714285714285,
+          "recall": 0.1111111111111111,
+          "f1": 0.125
+        }
+      },
+      "tokens_per_second": 57.91718606714413
+    },
+    {
+      "query": "Clinical presentation of COVID-19 pneumonia on admission",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "dry cough",
+          "dyspnea",
+          "fatigue",
+          "myalgia",
+          "anosmia",
+          "sore throat"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "chest CT",
+          "chest radiography",
+          "pulse oximetry",
+          "C-reactive protein"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'hyperfibrinogenemia', 'description': 'early hyperfibrinogenemia is to be expected in covid-19 patients'}",
+          "{'name': 'thrombocytopenia', 'description': 'borderline or overt thrombocytopenia is common in covid-19 patients at the time of clinical presentation'}",
+          "{'name': 'leukopenia', 'description': 'leukopenia and t cell deficiencies in covid-19 patients at presentation'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'd-dimer', 'description': 'elevations in fibrinogen and d-dimer have been reported (and confirmed by our findings)'}",
+          "{'name': 'prothrombin time', 'description': 'prothrombin time and d-dimer levels were higher in icu patients than in non-icu patients'}"
+        ],
+        "Pathogens": [
+          "{'name': 'COVID-19', 'description': 'covid-19 patients, covidpos patients'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to the clinical presentation of COVID-19 pneumonia on admission and categorized them into Symptoms, Diagnostics, and Pathogens. Here's the result in JSON format:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"hyperfibrinogenemia\",\n      \"description\": \"early hyperfibrinogenemia is to be expected in covid-19 patients\"\n    },\n    {\n      \"name\": \"thrombocytopenia\",\n      \"description\": \"borderline or overt thrombocytopenia is common in covid-19 patients at the time of clinical presentation\"\n    },\n    {\n      \"name\": \"leukopenia\",\n      \"description\": \"leukopenia and t cell deficiencies in covid-19 patients at presentation\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"d-dimer\",\n      \"description\": \"elevations in fibrinogen and d-dimer have been reported (and confirmed by our findings)\"\n    },\n    {\n      \"name\": \"prothrombin time\",\n      \"description\": \"prothrombin time and d-dimer levels were higher in icu patients than in non-icu patients\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"COVID-19\",\n      \"description\": \"covid-19 patients, covidpos patients\"\n    }\n  ]\n}\n```\n\nThese extracted entities are relevant to the clinical presentation of COVID-19 pneumonia on admission and can be used for further analysis or research.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 62.61519962579904
+    },
+    {
+      "query": "Coagulopathy and thrombotic complications in severe COVID-19",
+      "gold": {
+        "Symptoms": [
+          "dyspnea",
+          "chest pain",
+          "leg swelling"
+        ],
+        "Diagnostics": [
+          "D-dimer",
+          "fibrinogen",
+          "prothrombin time",
+          "platelet count",
+          "CT pulmonary angiography",
+          "venous duplex ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "Stroke",
+          "Pulmonary embolism",
+          "Myocardial infarction",
+          "Venous or arterial thromboembolic complications"
+        ],
+        "Diagnostics": [
+          "Coagulation-related tests",
+          "Fibrinogen levels",
+          "Platelet counts",
+          "Prothrombin time",
+          "D-dimer levels"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I have extracted relevant medical entities related to coagulopathy and thrombotic complications in severe COVID-19. Here are the results:\n\n```\n{\n  \"Symptoms\": [\n    \"Stroke\",\n    \"Pulmonary embolism\",\n    \"Myocardial infarction\",\n    \"Venous or arterial thromboembolic complications\"\n  ],\n  \"Diagnostics\": [\n    \"Coagulation-related tests\",\n    \"Fibrinogen levels\",\n    \"Platelet counts\",\n    \"Prothrombin time\",\n    \"D-dimer levels\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nThese entities are relevant to the user query and have been categorized into Symptoms, Diagnostics, and Pathogens.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.2,
+            "recall": 0.16666666666666666,
+            "f1": 0.1818181818181818
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004
+        }
+      },
+      "tokens_per_second": 62.75885238631894
+    },
+    {
+      "query": "Multisystem inflammatory syndrome in children after SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "rash",
+          "conjunctivitis",
+          "abdominal pain",
+          "vomiting",
+          "diarrhea",
+          "hypotension"
+        ],
+        "Diagnostics": [
+          "C-reactive protein",
+          "ferritin",
+          "troponin",
+          "BNP",
+          "echocardiography",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "coagulopathies",
+          "thrombosis"
+        ],
+        "Diagnostics": [
+          "lab test results",
+          "fibrinogen levels",
+          "platelet counts",
+          "pcr testing date"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "=== RETRIEVED CONTEXT ===\n[Doc 1 | cord_uid=row_00000204]\ndigitized analyses of longitudinal unstructured and structured ehr records to identify variables ( e. g., laboratory results ) which are associated with relevant clinical phenotypes ( e. g., covid - 19 diagnosis and outcomes ). in doing so, we identified trends in lab test results which may be relevant to monitor in covid - 19 patients and warrant both clinical and mechanistic followup in more targeted and explicitly controlled prospective analyses.\n\n[Doc 3 | cord_uid=row_00000204]\nthe advantage of increased granularity at the cost of sample size per time point, but we did identify similar lab tests as altered in covidpos patients using each approach including the fibrinogen decline and platelet increase in the covidpos cohort after diagnosis ( figure 3 ). given the recently described coagulopathies associated with covid - 19 1, 2, 3, we were intrigued by these temporal trends in fibrinogen levels and platelet counts in the covidpos cohort. we next asked whether the observed coagulation - related laboratory trends were associated with clinical manifestations of thrombosis.\n\n[Doc 4 | cord_uid=row_00000204]\n% ) and 3, 325 ( 40 % ), respectively. overall, more patients in the covidneg cohort were hospitalized at the start of the study period. in particular, the number of covidpos patients hospitalized on the sars - cov - 2 pcr testing date was 23 ( 12. 7 % ), compared to 1435 ( 18. 5 % ) for the covidneg cohort.\n\n[Doc 5 | cord_uid=row_00000204]\ng., lab tests and clinical notes ) at a large scale. the fact that tens of thousands of patients have undergone sars - cov - 2 testing at major academic medical centers ( amcs ) provides an abundance of potential data to perform this analysis but also poses significant challenges from a practicality standpoint.\n\n=== END CONTEXT ===\n\nBased on the retrieved context, I can extract the following medical entities relevant to the user query:\n\n{\n  \"Symptoms\": [\"coagulopathies\", \"thrombosis\"],\n  \"Diagnostics\": [\"lab test results\", \"fibrinogen levels\", \"platelet counts\", \"pcr testing date\"],\n  \"Pathogens\": [\"SARS-CoV-2\"]\n}\n\nNote that the context does not specifically mention Multisystem inflammatory",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.14285714285714285,
+          "recall": 0.07142857142857142,
+          "f1": 0.09523809523809523
+        }
+      },
+      "tokens_per_second": 59.90549493749269
+    },
+    {
+      "query": "Bacterial and fungal co-infections in hospitalized COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "worsening dyspnea",
+          "productive cough",
+          "hypotension"
+        ],
+        "Diagnostics": [
+          "blood culture",
+          "sputum culture",
+          "procalcitonin",
+          "galactomannan assay",
+          "bronchoalveolar lavage"
+        ],
+        "Pathogens": [
+          "Staphylococcus aureus",
+          "Streptococcus pneumoniae",
+          "Pseudomonas aeruginosa",
+          "Klebsiella pneumoniae",
+          "Aspergillus fumigatus",
+          "Candida albicans"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "thrombosis",
+          "consumptive coagulopathy",
+          "leukopenia",
+          "lymphopenia",
+          "stroke",
+          "pulmonary embolism",
+          "myocardial infarction"
+        ],
+        "Diagnostics": [
+          "prothrombin time",
+          "d-dimer levels",
+          "platelet count",
+          "PCR test result",
+          "anticoagulant/antiplatelet medication use"
+        ],
+        "Pathogens": []
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to bacterial and fungal co-infections in hospitalized COVID-19 patients. Here are the results:\n\n```\n{\n  \"Symptoms\": [\n    \"thrombosis\",\n    \"consumptive coagulopathy\",\n    \"leukopenia\",\n    \"lymphopenia\",\n    \"stroke\",\n    \"pulmonary embolism\",\n    \"myocardial infarction\"\n  ],\n  \"Diagnostics\": [\n    \"prothrombin time\",\n    \"d-dimer levels\",\n    \"platelet count\",\n    \"PCR test result\",\n    \"anticoagulant/antiplatelet medication use\"\n  ],\n  \"Pathogens\": []\n}\n```\n\nNote that there are no specific mentions of bacterial or fungal co-infections in the retrieved context. However, the extracted entities related to symptoms and diagnostics may be relevant to understanding the clinical presentation and management of COVID-19 patients with potential co-infections.\n\nIf you'd like to focus specifically on bacterial and fungal co-infections, I can try to extract more targeted information from the context. Please let me know!",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 58.389886621976835
+    },
+    {
+      "query": "Acute respiratory distress syndrome in mechanically ventilated COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "severe dyspnea",
+          "hypoxemia",
+          "tachypnea",
+          "cyanosis"
+        ],
+        "Diagnostics": [
+          "arterial blood gas",
+          "PaO2/FiO2 ratio",
+          "chest radiography",
+          "chest CT",
+          "lung ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "clots",
+          "microthrombi",
+          "pulmonary emboli",
+          "leukopenia",
+          "t cell deficiencies",
+          "anemia"
+        ],
+        "Diagnostics": [
+          "fibrinogen",
+          "platelets",
+          "d-dimer",
+          "prothrombin time",
+          "creactive protein",
+          "interleukin-6 (IL-6)"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities and categorized them into Symptoms, Diagnostics, and Pathogens. Here's the result as JSON:\n\n```\n{\n  \"Symptoms\": [\n    \"clots\",\n    \"microthrombi\",\n    \"pulmonary emboli\",\n    \"leukopenia\",\n    \"t cell deficiencies\",\n    \"anemia\"\n  ],\n  \"Diagnostics\": [\n    \"fibrinogen\",\n    \"platelets\",\n    \"d-dimer\",\n    \"prothrombin time\",\n    \"creactive protein\",\n    \"interleukin-6 (IL-6)\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nThese extracted entities are relevant to the user query about acute respiratory distress syndrome in mechanically ventilated COVID-19 patients.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.07692307692307693,
+          "recall": 0.1,
+          "f1": 0.08695652173913043
+        }
+      },
+      "tokens_per_second": 57.62869826084462
+    },
+    {
+      "query": "Neurological manifestations of COVID-19",
+      "gold": {
+        "Symptoms": [
+          "headache",
+          "anosmia",
+          "ageusia",
+          "confusion",
+          "seizures",
+          "stroke symptoms",
+          "encephalopathy"
+        ],
+        "Diagnostics": [
+          "brain MRI",
+          "CT head",
+          "cerebrospinal fluid analysis",
+          "electroencephalogram",
+          "RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Stroke', 'description': 'a severe condition that occurs when the blood supply to part of the brain is interrupted or reduced, preventing brain tissue from getting oxygen and nutrients'}",
+          "{'name': 'Pulmonary embolism', 'description': 'a blockage in one of the pulmonary arteries in the lungs'}",
+          "{'name': 'Myocardial infarction', 'description': 'a condition where blood flow to the heart is blocked, causing damage to the heart muscle'}",
+          "{'name': 'Thrombotic microangiopathy', 'description': 'a rare disorder characterized by the formation of small blood clots in the tiny blood vessels throughout the body'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Prothrombin time (PT)', 'description': 'a test used to evaluate the extrinsic coagulation pathway and measure the time it takes for blood to clot'}",
+          "{'name': 'D-dimer', 'description': 'a protein fragment produced when a blood clot dissolves, often used as an indicator of thrombotic activity'}"
+        ],
+        "Pathogens": [
+          "{'name': 'SARS-CoV-2', 'description': 'the virus responsible for COVID-19'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to neurological manifestations of COVID-19 and categorized them into Symptoms, Diagnostics, and Pathogens. Here's the result in JSON format:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Stroke\",\n      \"description\": \"a severe condition that occurs when the blood supply to part of the brain is interrupted or reduced, preventing brain tissue from getting oxygen and nutrients\"\n    },\n    {\n      \"name\": \"Pulmonary embolism\",\n      \"description\": \"a blockage in one of the pulmonary arteries in the lungs\"\n    },\n    {\n      \"name\": \"Myocardial infarction\",\n      \"description\": \"a condition where blood flow to the heart is blocked, causing damage to the heart muscle\"\n    },\n    {\n      \"name\": \"Thrombotic microangiopathy\",\n      \"description\": \"a rare disorder characterized by the formation of small blood clots in the tiny blood vessels throughout the body\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Prothrombin time (PT)\",\n      \"description\": \"a test used to evaluate the extrinsic coagulation pathway and measure the time it takes for blood to clot\"\n    },\n    {\n      \"name\": \"D-dimer\",\n      \"description\": \"a protein fragment produced when a blood clot dissolves, often used as an indicator of thrombotic activity\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"the virus responsible for COVID-19\"\n    }\n  ]\n}\n```\n\nNote that some entities may belong to multiple categories, but I've categorized them based on their primary association. For example, D-dimer is primarily a diagnostic tool, but it's also related to the symptoms of thrombotic activity.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 61.354604339983915
+    },
+    {
+      "query": "Diabetes mellitus as a risk factor for severe COVID-19 outcomes",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "dyspnea",
+          "polyuria",
+          "polydipsia",
+          "altered mental status"
+        ],
+        "Diagnostics": [
+          "HbA1c",
+          "fasting glucose",
+          "blood ketones",
+          "arterial blood gas",
+          "RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "stroke",
+          "pulmonary embolism",
+          "myocardial infarction"
+        ],
+        "Diagnostics": [
+          "prothrombin time",
+          "d-dimer levels",
+          "thrombocytopenia"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I can provide information relevant to the user query.\n\nHere is the extracted medical entity categorized into exactly one of three classes: Symptoms, Diagnostics, Pathogens:\n\n```\n{\n  \"Symptoms\": [\"stroke\", \"pulmonary embolism\", \"myocardial infarction\"],\n  \"Diagnostics\": [\"prothrombin time\", \"d-dimer levels\", \"thrombocytopenia\"],\n  \"Pathogens\": [\"SARS-CoV-2\"]\n}\n```\n\nNote that diabetes mellitus is not explicitly mentioned in the retrieved context as a risk factor for severe COVID-19 outcomes. However, it is mentioned in Doc 4 as one of the pre-existing conditions (e.g., diabetes, hypertension, obesity, malignancies) relevant to COVID-19 outcomes.\n\nIf you would like to know more about diabetes mellitus and its relationship with COVID-19, I can try to provide additional information based on external knowledge.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.14285714285714285,
+          "recall": 0.09090909090909091,
+          "f1": 0.1111111111111111
+        }
+      },
+      "tokens_per_second": 62.67218731048704
+    },
+    {
+      "query": "Differential diagnosis of influenza and COVID-19 during respiratory season",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "sore throat",
+          "myalgia",
+          "fatigue",
+          "headache",
+          "anosmia"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "rapid antigen test",
+          "multiplex respiratory panel",
+          "chest radiography"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "influenza A virus",
+          "influenza B virus",
+          "respiratory syncytial virus"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Pulmonary embolism', 'description': 'A blockage of an artery in the lungs'}",
+          "{'name': 'Stroke', 'description': 'A condition where the blood supply to part of the brain is interrupted or reduced, depriving brain tissue of oxygen and nutrients'}",
+          "{'name': 'Myocardial infarction', 'description': 'A condition where the blood flow to the heart is blocked, causing damage to the heart muscle'}",
+          "{'name': 'Leukopenia', 'description': 'A decrease in the number of white blood cells'}",
+          "{'name': 'T cell deficiencies', 'description': 'A condition where the immune system has a weakened response to infections'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Prothrombin time', 'description': 'A test used to measure the time it takes for blood to clot'}",
+          "{'name': 'D-dimer levels', 'description': 'A test used to detect the presence of fibrin degradation products in the blood, which can indicate thrombosis or DIC'}",
+          "{'name': 'Fibrinogen testing', 'description': 'A test used to measure the level of fibrinogen in the blood'}"
+        ],
+        "Pathogens": [
+          "{'name': 'COVID-19', 'description': 'A viral respiratory illness caused by SARS-CoV-2'}",
+          "{'name': 'Influenza', 'description': 'A viral respiratory illness caused by the influenza virus'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to the user query \"Differential diagnosis of influenza and COVID-19 during respiratory season\". Here's the result in JSON format:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Pulmonary embolism\",\n      \"description\": \"A blockage of an artery in the lungs\"\n    },\n    {\n      \"name\": \"Stroke\",\n      \"description\": \"A condition where the blood supply to part of the brain is interrupted or reduced, depriving brain tissue of oxygen and nutrients\"\n    },\n    {\n      \"name\": \"Myocardial infarction\",\n      \"description\": \"A condition where the blood flow to the heart is blocked, causing damage to the heart muscle\"\n    },\n    {\n      \"name\": \"Leukopenia\",\n      \"description\": \"A decrease in the number of white blood cells\"\n    },\n    {\n      \"name\": \"T cell deficiencies\",\n      \"description\": \"A condition where the immune system has a weakened response to infections\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Prothrombin time\",\n      \"description\": \"A test used to measure the time it takes for blood to clot\"\n    },\n    {\n      \"name\": \"D-dimer levels\",\n      \"description\": \"A test used to detect the presence of fibrin degradation products in the blood, which can indicate thrombosis or DIC\"\n    },\n    {\n      \"name\": \"Fibrinogen testing\",\n      \"description\": \"A test used to measure the level of fibrinogen in the blood\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"COVID-19\",\n      \"description\": \"A viral respiratory illness caused by SARS-CoV-2\"\n    },\n    {\n      \"name\": \"Influenza\",\n      \"description\": \"A viral respiratory illness caused by the influenza virus\"\n    }\n  ]\n}\n```\n\nThese medical entities are relevant to the differential diagnosis of influenza and COVID-19 during respiratory season, as they include symptoms, diagnostics, and pathogens that may be associated with these conditions.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 60.86649563428818
+    },
+    {
+      "query": "Long COVID and post-acute sequelae of SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "fatigue",
+          "dyspnea",
+          "brain fog",
+          "chest pain",
+          "palpitations",
+          "joint pain",
+          "headache",
+          "insomnia"
+        ],
+        "Diagnostics": [
+          "pulmonary function tests",
+          "echocardiography",
+          "cardiopulmonary exercise test",
+          "neurocognitive testing"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fibrinogen decline",
+          "platelet increase"
+        ],
+        "Diagnostics": [
+          "PCR testing for suspected SARS-CoV-2 infection",
+          "hospitalization status"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "=== RETRIEVED CONTEXT ===\n[Doc 1 | cord_uid=row_00000204]\ndigitized analyses of longitudinal unstructured and structured ehr records to identify variables ( e. g., laboratory results ) which are associated with relevant clinical phenotypes ( e. g., covid - 19 diagnosis and outcomes ). in doing so, we identified trends in lab test results which may be relevant to monitor in covid - 19 patients and warrant both clinical and mechanistic followup in more targeted and explicitly controlled prospective analyses.\n\n[Doc 3 | cord_uid=row_00000204]\nthe advantage of increased granularity at the cost of sample size per time point, but we did identify similar lab tests as altered in covidpos patients using each approach including the fibrinogen decline and platelet increase in the covidpos cohort after diagnosis ( figure 3 ). given the recently described coagulopathies associated with covid - 19 1, 2, 3, we were intrigued by these temporal trends in fibrinogen levels and platelet counts in the covidpos cohort.\n\n[Doc 5 | cord_uid=row_00000204]\n% ) and 3, 325 ( 40 % ), respectively. overall, more patients in the covidneg cohort were hospitalized at the start of the study period. in particular, the number of covidpos patients hospitalized on the sars - cov - 2 pcr testing date was 23 ( 12. 7 % ), compared to 1435 ( 18. 5 % ) for the covidneg cohort.\n\n=== END CONTEXT ===\n\nBased on the retrieved context, I have extracted medical entities relevant to Long COVID and post-acute sequelae of SARS-CoV-2 infection. Here are the results:\n\n```\n{\n  \"Symptoms\": [\n    \"fibrinogen decline\",\n    \"platelet increase\"\n  ],\n  \"Diagnostics\": [\n    \"PCR testing for suspected SARS-CoV-2 infection\",\n    \"hospitalization status\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nThese medical entities are categorized into three classes: Symptoms (fibrinogen decline and platelet increase), Diagnostics (PCR testing for suspected SARS-CoV-2 infection and hospitalization status), and Pathogens (SARS-CoV-2).",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.2,
+          "recall": 0.07692307692307693,
+          "f1": 0.1111111111111111
+        }
+      },
+      "tokens_per_second": 57.71925706300483
+    },
+    {
+      "query": "Cytokine release syndrome markers in severe COVID-19",
+      "gold": {
+        "Symptoms": [
+          "high fever",
+          "hypotension",
+          "dyspnea",
+          "confusion"
+        ],
+        "Diagnostics": [
+          "interleukin-6",
+          "ferritin",
+          "C-reactive protein",
+          "lactate dehydrogenase",
+          "D-dimer"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Thrombocytopenia', 'description': 'Low platelet count'}",
+          "{'name': 'Prolongation of prothrombin time', 'description': 'Increased clotting time'}",
+          "{'name': 'Hemorrhagic events', 'description': 'Bleeding complications'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Elevated D-dimer levels', 'description': 'Marker of coagulation activation'}",
+          "{'name': 'Fibrinogen testing', 'description': 'Assessment of clotting factors'}",
+          "{'name': 'Platelet count monitoring', 'description': 'Tracking platelet levels'}"
+        ],
+        "Pathogens": [
+          "{'name': 'SARS-CoV-2', 'description': 'COVID-19 virus'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I can extract relevant medical entities related to cytokine release syndrome (CRS) markers in severe COVID-19. Here are the extracted entities categorized into Symptoms, Diagnostics, and Pathogens:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Thrombocytopenia\",\n      \"description\": \"Low platelet count\"\n    },\n    {\n      \"name\": \"Prolongation of prothrombin time\",\n      \"description\": \"Increased clotting time\"\n    },\n    {\n      \"name\": \"Hemorrhagic events\",\n      \"description\": \"Bleeding complications\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Elevated D-dimer levels\",\n      \"description\": \"Marker of coagulation activation\"\n    },\n    {\n      \"name\": \"Fibrinogen testing\",\n      \"description\": \"Assessment of clotting factors\"\n    },\n    {\n      \"name\": \"Platelet count monitoring\",\n      \"description\": \"Tracking platelet levels\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"COVID-19 virus\"\n    }\n  ]\n}\n```\n\nNote that these entities are relevant to the user query on cytokine release syndrome markers in severe COVID-19, but they may not directly indicate CRS. However, they can be associated with the underlying inflammatory response and coagulation abnormalities seen in severe COVID-19.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 60.19022121815296
+    },
+    {
+      "query": "Gastrointestinal symptoms in COVID-19 and viral shedding",
+      "gold": {
+        "Symptoms": [
+          "diarrhea",
+          "nausea",
+          "vomiting",
+          "abdominal pain",
+          "loss of appetite"
+        ],
+        "Diagnostics": [
+          "stool RT-PCR",
+          "nasopharyngeal RT-PCR",
+          "liver function tests"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Leukopenia', 'description': 'A decrease in the number of white blood cells'}",
+          "{'name': 'Lymphopenia', 'description': 'A decrease in the number of lymphocytes (a type of white blood cell)'}",
+          "{'name': 'Anemia', 'description': 'A condition characterized by a lack of red blood cells or hemoglobin'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Prothrombin Time', 'description': 'A test used to evaluate the coagulation pathway'}",
+          "{'name': 'D-dimer', 'description': 'A protein fragment produced when a blood clot dissolves'}"
+        ],
+        "Pathogens": [
+          "{'name': 'COVID-19', 'description': 'The disease caused by the SARS-CoV-2 virus'}",
+          "{'name': 'SARS-CoV-2', 'description': 'The virus that causes COVID-19'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to the user query and categorized them into three classes: Symptoms, Diagnostics, Pathogens. Here's the result as JSON:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Leukopenia\",\n      \"description\": \"A decrease in the number of white blood cells\"\n    },\n    {\n      \"name\": \"Lymphopenia\",\n      \"description\": \"A decrease in the number of lymphocytes (a type of white blood cell)\"\n    },\n    {\n      \"name\": \"Anemia\",\n      \"description\": \"A condition characterized by a lack of red blood cells or hemoglobin\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Prothrombin Time\",\n      \"description\": \"A test used to evaluate the coagulation pathway\"\n    },\n    {\n      \"name\": \"D-dimer\",\n      \"description\": \"A protein fragment produced when a blood clot dissolves\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"COVID-19\",\n      \"description\": \"The disease caused by the SARS-CoV-2 virus\"\n    },\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"The virus that causes COVID-19\"\n    }\n  ]\n}\n```\n\nNote that some of these entities may be related to other aspects of COVID-19, but I've categorized them based on their relevance to the user query.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 62.55245442711983
+    },
+    {
+      "query": "Kawasaki-like illness in children during COVID-19 pandemic",
+      "gold": {
+        "Symptoms": [
+          "prolonged fever",
+          "rash",
+          "conjunctivitis",
+          "lymphadenopathy",
+          "red cracked lips",
+          "extremity swelling"
+        ],
+        "Diagnostics": [
+          "echocardiography",
+          "C-reactive protein",
+          "erythrocyte sedimentation rate",
+          "BNP",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Thrombocytopenia', 'description': 'Low platelet count'}",
+          "{'name': 'Hemorrhagic events', 'description': 'Bleeding events such as oropharyngeal and pulmonary hemorrhage'}",
+          "{'name': 'Consumptive coagulopathy', 'description': 'A condition characterized by excessive clotting of blood'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Fibrinogen testing', 'description': 'Measurement of fibrinogen levels in the blood'}",
+          "{'name': 'Platelet count', 'description': 'Counting of platelets in the blood'}",
+          "{'name': 'D-dimer test', 'description': 'Measurement of D-dimer levels in the blood, which indicates clotting activity'}"
+        ],
+        "Pathogens": [
+          "{'name': 'COVID-19', 'description': 'The SARS-CoV-2 virus causing the pandemic'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to Kawasaki-like illness in children during the COVID-19 pandemic. Here are the results:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Thrombocytopenia\",\n      \"description\": \"Low platelet count\"\n    },\n    {\n      \"name\": \"Hemorrhagic events\",\n      \"description\": \"Bleeding events such as oropharyngeal and pulmonary hemorrhage\"\n    },\n    {\n      \"name\": \"Consumptive coagulopathy\",\n      \"description\": \"A condition characterized by excessive clotting of blood\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Fibrinogen testing\",\n      \"description\": \"Measurement of fibrinogen levels in the blood\"\n    },\n    {\n      \"name\": \"Platelet count\",\n      \"description\": \"Counting of platelets in the blood\"\n    },\n    {\n      \"name\": \"D-dimer test\",\n      \"description\": \"Measurement of D-dimer levels in the blood, which indicates clotting activity\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"COVID-19\",\n      \"description\": \"The SARS-CoV-2 virus causing the pandemic\"\n    }\n  ]\n}\n```\n\nThese medical entities are relevant to Kawasaki-like illness in children during the COVID-19 pandemic, as they describe symptoms and diagnostic tests associated with this condition.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 62.39779222640481
+    },
+    {
+      "query": "Respiratory monitoring in home management of mild COVID-19",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "mild dyspnea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "pulse oximetry",
+          "home temperature monitoring",
+          "rapid antigen test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "anemia",
+          "worsening anemia",
+          "inflammation associated anemia"
+        ],
+        "Diagnostics": [
+          "lab tests",
+          "clinical notes",
+          "PCR testing",
+          "prothrombin time",
+          "d-dimer levels",
+          "thrombocytopenia",
+          "fibrinogen levels"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I will extract medical entities relevant to respiratory monitoring and categorize them into Symptoms, Diagnostics, and Pathogens.\n\n**JSON Output:**\n```json\n{\n  \"Symptoms\": [\n    \"anemia\",\n    \"worsening anemia\",\n    \"inflammation associated anemia\"\n  ],\n  \"Diagnostics\": [\n    \"lab tests\",\n    \"clinical notes\",\n    \"PCR testing\",\n    \"prothrombin time\",\n    \"d-dimer levels\",\n    \"thrombocytopenia\",\n    \"fibrinogen levels\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n**Explanation:**\n\n* **Symptoms:** Anemia, worsening anemia, and inflammation-associated anemia are mentioned in the context as potential symptoms related to COVID-19.\n* **Diagnostics:** Lab tests, clinical notes, PCR testing, prothrombin time, d-dimer levels, thrombocytopenia, and fibrinogen levels are all relevant to respiratory monitoring and diagnostics for COVID-19.\n* **Pathogens:** SARS-CoV-2 is the virus responsible for COVID-19.\n\nNote that some entities could be classified under multiple categories (e.g., PCR testing is both a diagnostic tool and related to respiratory monitoring), but I have categorized them based on their primary relevance.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.09090909090909091,
+          "recall": 0.125,
+          "f1": 0.10526315789473685
+        }
+      },
+      "tokens_per_second": 58.59825369163017
+    },
+    {
+      "query": "Acute kidney injury in hospitalized COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "oliguria",
+          "edema",
+          "fatigue",
+          "nausea"
+        ],
+        "Diagnostics": [
+          "serum creatinine",
+          "blood urea nitrogen",
+          "urinalysis",
+          "urine output measurement",
+          "renal ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Hyperfibrinogenemia', 'description': 'Early hyperfibrinogenemia is expected in COVID-19 patients.'}",
+          "{'name': 'Thrombocytopenia', 'description': 'Borderline or overt thrombocytopenia is common in COVID-19 patients at the time of clinical presentation.'}",
+          "{'name': 'Consumptive coagulopathy', 'description': 'Platelet reductions after clinical presentation are associated with thromboses and significant reductions may be indicative of ongoing consumptive coagulopathy.'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Prothrombin time (PT)', 'description': 'Prothrombin time and d-dimer levels were higher in ICU patients than in non-ICU patients.'}",
+          "{'name': 'D-dimer', 'description': 'A D-dimer level of at least 2.0 \u00b5g/ml could predict mortality with a sensitivity of 92.3% and a specificity of 83.3%.'}"
+        ],
+        "Pathogens": [
+          "{'name': 'SARS-CoV-2', 'description': 'The virus causing COVID-19 infection.'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I can provide information relevant to the query \"Acute kidney injury in hospitalized COVID-19 patients\". However, since there is no direct mention of acute kidney injury (AKI) in the provided documents, I will focus on extracting medical entities related to COVID-19 and its complications.\n\nHere's a JSON output with extracted medical entities categorized into Symptoms, Diagnostics, and Pathogens:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Hyperfibrinogenemia\",\n      \"description\": \"Early hyperfibrinogenemia is expected in COVID-19 patients.\"\n    },\n    {\n      \"name\": \"Thrombocytopenia\",\n      \"description\": \"Borderline or overt thrombocytopenia is common in COVID-19 patients at the time of clinical presentation.\"\n    },\n    {\n      \"name\": \"Consumptive coagulopathy\",\n      \"description\": \"Platelet reductions after clinical presentation are associated with thromboses and significant reductions may be indicative of ongoing consumptive coagulopathy.\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Prothrombin time (PT)\",\n      \"description\": \"Prothrombin time and d-dimer levels were higher in ICU patients than in non-ICU patients.\"\n    },\n    {\n      \"name\": \"D-dimer\",\n      \"description\": \"A D-dimer level of at least 2.0 \u00b5g/ml could predict mortality with a sensitivity of 92.3% and a specificity of 83.3%.\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"The virus causing COVID-19 infection.\"\n    }\n  ]\n}\n```\n\nPlease note that the extracted entities are not directly related to acute kidney injury (AKI) but rather focus on other complications and diagnostic markers associated with COVID-19. If you would like me to search for information specifically related to AKI in hospitalized COVID-19 patients, I can try to provide more targeted results.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 57.383266949439545
+    },
+    {
+      "query": "COVID-19 in immunocompromised solid organ transplant recipients",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "dyspnea",
+          "diarrhea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "chest CT",
+          "C-reactive protein",
+          "lymphocyte count",
+          "drug level monitoring"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "cytomegalovirus"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "stroke",
+          "pulmonary embolism",
+          "myocardial infarction",
+          "thromboembolic complications",
+          "hyperfibrinogenemia",
+          "declining fibrinogen levels",
+          "borderline or overt thrombocytopenia",
+          "platelet count does not robustly predict patients who are likely to develop thromboses"
+        ],
+        "Diagnostics": [
+          "prothrombin time",
+          "d-dimer levels",
+          "fibrinogen",
+          "creactive protein",
+          "interleukin-6 (IL-6)",
+          "platelet count"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to COVID-19 and categorized them into Symptoms, Diagnostics, and Pathogens. Here's the result as JSON:\n\n```\n{\n  \"Symptoms\": [\n    \"stroke\",\n    \"pulmonary embolism\",\n    \"myocardial infarction\",\n    \"thromboembolic complications\",\n    \"hyperfibrinogenemia\",\n    \"declining fibrinogen levels\",\n    \"borderline or overt thrombocytopenia\",\n    \"platelet count does not robustly predict patients who are likely to develop thromboses\"\n  ],\n  \"Diagnostics\": [\n    \"prothrombin time\",\n    \"d-dimer levels\",\n    \"fibrinogen\",\n    \"creactive protein\",\n    \"interleukin-6 (IL-6)\",\n    \"platelet count\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nNote that some of these entities may belong to multiple categories, but I've categorized them based on their primary association. For example, \"d-dimer levels\" is primarily a diagnostic tool, but it's also related to symptoms (thromboembolic complications).",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666
+          }
+        },
+        "micro": {
+          "precision": 0.06666666666666667,
+          "recall": 0.08333333333333333,
+          "f1": 0.07407407407407407
+        }
+      },
+      "tokens_per_second": 62.4655827451754
+    },
+    {
+      "query": "Pulmonary embolism screening in COVID-19 patients with worsening hypoxemia",
+      "gold": {
+        "Symptoms": [
+          "sudden dyspnea",
+          "chest pain",
+          "tachycardia",
+          "hemoptysis"
+        ],
+        "Diagnostics": [
+          "D-dimer",
+          "CT pulmonary angiography",
+          "venous duplex ultrasound",
+          "electrocardiogram"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Pulmonary embolism', 'description': 'A blockage of an artery in the lungs'}",
+          "{'name': 'Worsening hypoxemia', 'description': 'Decreased oxygen levels in the blood'}",
+          "{'name': 'Clots systemically and locally in the pulmonary vasculature', 'description': 'Formation of clots in the blood vessels of the lungs'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Fibrinogen testing', 'description': 'A test to measure fibrinogen levels in the blood'}",
+          "{'name': 'D-dimer levels', 'description': 'A test to measure D-dimer levels in the blood, which can indicate clotting'}",
+          "{'name': 'Prothrombin time (PT)', 'description': 'A test to measure the time it takes for blood to clot'}"
+        ],
+        "Pathogens": [
+          "{'name': 'SARS-CoV-2', 'description': 'The virus that causes COVID-19'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities and categorized them into Symptoms, Diagnostics, and Pathogens. Here's the result as JSON:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Pulmonary embolism\",\n      \"description\": \"A blockage of an artery in the lungs\"\n    },\n    {\n      \"name\": \"Worsening hypoxemia\",\n      \"description\": \"Decreased oxygen levels in the blood\"\n    },\n    {\n      \"name\": \"Clots systemically and locally in the pulmonary vasculature\",\n      \"description\": \"Formation of clots in the blood vessels of the lungs\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Fibrinogen testing\",\n      \"description\": \"A test to measure fibrinogen levels in the blood\"\n    },\n    {\n      \"name\": \"D-dimer levels\",\n      \"description\": \"A test to measure D-dimer levels in the blood, which can indicate clotting\"\n    },\n    {\n      \"name\": \"Prothrombin time (PT)\",\n      \"description\": \"A test to measure the time it takes for blood to clot\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"The virus that causes COVID-19\"\n    }\n  ]\n}\n```\n\nThese extracted entities are relevant to the user query, which is about pulmonary embolism screening in COVID-19 patients with worsening hypoxemia. The Symptoms category includes conditions related to clotting and oxygen levels, while the Diagnostics category includes tests used to diagnose these conditions. The Pathogens category includes the virus that causes COVID-19.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 62.50791990843071
+    },
+    {
+      "query": "Dermatological manifestations associated with SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "maculopapular rash",
+          "urticaria",
+          "chilblain-like lesions",
+          "livedo reticularis",
+          "vesicular rash"
+        ],
+        "Diagnostics": [
+          "skin biopsy",
+          "RT-PCR",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "Thrombosis",
+          "Pulmonary embolism (PE)",
+          "Deep vein thrombosis (DVT)",
+          "Venous thromboembolic phenotypes",
+          "Coagulopathy",
+          "Stroke",
+          "Myocardial infarction"
+        ],
+        "Diagnostics": [
+          "Polymerase chain reaction (PCR) test for SARS-CoV-2 infection",
+          "Fibrinogen levels",
+          "Platelet counts",
+          "D-dimer levels",
+          "Prothrombin time"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I can provide information relevant to dermatological manifestations associated with SARS-CoV-2 infection.\n\nHowever, since there is no direct mention of dermatological manifestations in the provided context, I will extract related medical entities that might be relevant to the query:\n\n* Symptoms:\n\t+ Thrombosis\n\t+ Pulmonary embolism (PE)\n\t+ Deep vein thrombosis (DVT)\n\t+ Venous thromboembolic phenotypes\n\t+ Coagulopathy\n\t+ Stroke\n\t+ Myocardial infarction\n* Diagnostics:\n\t+ Polymerase chain reaction (PCR) test for SARS-CoV-2 infection\n\t+ Fibrinogen levels\n\t+ Platelet counts\n\t+ D-dimer levels\n\t+ Prothrombin time\n* Pathogens:\n\t+ SARS-CoV-2\n\nSince there is no direct mention of dermatological manifestations, I will not include any entities related to skin conditions.\n\nHere is the result in JSON format:\n\n```\n{\n  \"Symptoms\": [\n    \"Thrombosis\",\n    \"Pulmonary embolism (PE)\",\n    \"Deep vein thrombosis (DVT)\",\n    \"Venous thromboembolic phenotypes\",\n    \"Coagulopathy\",\n    \"Stroke\",\n    \"Myocardial infarction\"\n  ],\n  \"Diagnostics\": [\n    \"Polymerase chain reaction (PCR) test for SARS-CoV-2 infection\",\n    \"Fibrinogen levels\",\n    \"Platelet counts\",\n    \"D-dimer levels\",\n    \"Prothrombin time\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.07692307692307693,
+          "recall": 0.1111111111111111,
+          "f1": 0.09090909090909093
+        }
+      },
+      "tokens_per_second": 61.501315289190885
+    },
+    {
+      "query": "Elevated liver enzymes in COVID-19 clinical course",
+      "gold": {
+        "Symptoms": [
+          "jaundice",
+          "fatigue",
+          "abdominal pain",
+          "nausea"
+        ],
+        "Diagnostics": [
+          "ALT",
+          "AST",
+          "alkaline phosphatase",
+          "total bilirubin",
+          "abdominal ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Hemorrhagic events', 'description': 'Oropharyngeal and pulmonary hemorrhagic events'}",
+          "{'name': 'Thrombotic events', 'description': 'Clots in patients with COVID-19, including dic-like consumptive coagulopathy'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Fibrinogen testing', 'description': 'Longitudinal fibrinogen testing to monitor coagulation status'}",
+          "{'name': 'Platelet count', 'description': 'Monitoring platelet counts in patients with COVID-19'}",
+          "{'name': 'D-dimer levels', 'description': 'Elevated d-dimer levels as a predictor of mortality in COVID-19 patients'}"
+        ],
+        "Pathogens": [
+          "{'name': 'SARS-CoV-2', 'description': 'The virus causing COVID-19'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I have extracted relevant medical entities related to elevated liver enzymes in the COVID-19 clinical course. Here are the results:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Hemorrhagic events\",\n      \"description\": \"Oropharyngeal and pulmonary hemorrhagic events\"\n    },\n    {\n      \"name\": \"Thrombotic events\",\n      \"description\": \"Clots in patients with COVID-19, including dic-like consumptive coagulopathy\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Fibrinogen testing\",\n      \"description\": \"Longitudinal fibrinogen testing to monitor coagulation status\"\n    },\n    {\n      \"name\": \"Platelet count\",\n      \"description\": \"Monitoring platelet counts in patients with COVID-19\"\n    },\n    {\n      \"name\": \"D-dimer levels\",\n      \"description\": \"Elevated d-dimer levels as a predictor of mortality in COVID-19 patients\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"The virus causing COVID-19\"\n    }\n  ]\n}\n```\n\nNote that there is no direct mention of elevated liver enzymes in the retrieved context. However, I have included some related entities such as thrombotic events and fibrinogen testing, which may be relevant to the user query.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 58.50822280260122
+    },
+    {
+      "query": "Pregnancy outcomes and vertical transmission risk of SARS-CoV-2",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "dyspnea",
+          "myalgia",
+          "preterm labor"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "fetal ultrasound",
+          "cardiotocography",
+          "neonatal RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Covid-19 diagnosis', 'description': 'Positive SARS-CoV-2 PCR test result'}",
+          "{'name': 'Hospitalization', 'description': 'Number of patients hospitalized at the start of the study period'}"
+        ],
+        "Diagnostics": [
+          "{'name': 'SARS-CoV-2 PCR test', 'description': 'Polymerase chain reaction testing for suspected SARS-CoV-2 infection'}",
+          "{'name': 'Fibrinogen and platelets tests', 'description': 'Coagulation-related laboratory abnormalities associated with COVID-19 diagnosis'}"
+        ],
+        "Pathogens": [
+          "{'name': 'SARS-CoV-2', 'description': 'Severe acute respiratory syndrome coronavirus 2'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to the user query and categorized them into three classes: Symptoms, Diagnostics, Pathogens.\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Covid-19 diagnosis\",\n      \"description\": \"Positive SARS-CoV-2 PCR test result\"\n    },\n    {\n      \"name\": \"Hospitalization\",\n      \"description\": \"Number of patients hospitalized at the start of the study period\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"SARS-CoV-2 PCR test\",\n      \"description\": \"Polymerase chain reaction testing for suspected SARS-CoV-2 infection\"\n    },\n    {\n      \"name\": \"Fibrinogen and platelets tests\",\n      \"description\": \"Coagulation-related laboratory abnormalities associated with COVID-19 diagnosis\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"Severe acute respiratory syndrome coronavirus 2\"\n    }\n  ]\n}\n```\n\nNote that the extracted entities are based on the context provided, and may not be an exhaustive list of all relevant medical entities related to the user query.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 57.67199415095463
+    },
+    {
+      "query": "Mucormycosis secondary to COVID-19 corticosteroid therapy",
+      "gold": {
+        "Symptoms": [
+          "facial pain",
+          "nasal congestion",
+          "black eschar",
+          "periorbital swelling",
+          "vision loss",
+          "headache"
+        ],
+        "Diagnostics": [
+          "sinus CT",
+          "sinus MRI",
+          "KOH microscopy",
+          "fungal culture",
+          "tissue biopsy"
+        ],
+        "Pathogens": [
+          "Rhizopus",
+          "Mucor",
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "stroke",
+          "pulmonary embolism",
+          "myocardial infarction"
+        ],
+        "Diagnostics": [
+          "d-dimer levels",
+          "prothrombin time",
+          "fibrinogen",
+          "creactive protein",
+          "interleukin-6 (IL-6)"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "To answer your question, I will extract medical entities relevant to mucormycosis secondary to COVID-19 corticosteroid therapy from the retrieved context.\n\nHowever, since there is no mention of \"mucormycosis\" in the provided context, I'll focus on extracting relevant information related to COVID-19 and corticosteroids.\n\nHere's a JSON output with extracted medical entities categorized into Symptoms, Diagnostics, and Pathogens:\n\n```\n{\n  \"Symptoms\": [\n    \"stroke\",\n    \"pulmonary embolism\",\n    \"myocardial infarction\"\n  ],\n  \"Diagnostics\": [\n    \"d-dimer levels\",\n    \"prothrombin time\",\n    \"fibrinogen\",\n    \"creactive protein\",\n    \"interleukin-6 (IL-6)\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nNote that the extracted entities are not directly related to mucormycosis but rather focus on COVID-19 and its associated complications. If you'd like me to extract information specifically about mucormycosis, please provide more context or details about what you're looking for.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1": 0.5
+          }
+        },
+        "micro": {
+          "precision": 0.1111111111111111,
+          "recall": 0.07142857142857142,
+          "f1": 0.08695652173913043
+        }
+      },
+      "tokens_per_second": 62.64944155212262
+    },
+    {
+      "query": "Oxygen therapy escalation in hospitalized COVID-19 pneumonia",
+      "gold": {
+        "Symptoms": [
+          "progressive dyspnea",
+          "hypoxemia",
+          "tachypnea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "pulse oximetry",
+          "arterial blood gas",
+          "chest radiography",
+          "respiratory rate monitoring"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "stroke",
+          "pulmonary embolism",
+          "myocardial infarction",
+          "venous or arterial thromboembolic complications"
+        ],
+        "Diagnostics": [
+          "prothrombin time",
+          "d-dimer levels",
+          "thrombocytopenia",
+          "fibrinogen testing"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I will extract medical entities relevant to oxygen therapy escalation in hospitalized COVID-19 pneumonia and categorize them into Symptoms, Diagnostics, or Pathogens.\n\n**JSON Output:**\n```json\n{\n  \"Symptoms\": [\n    \"stroke\",\n    \"pulmonary embolism\",\n    \"myocardial infarction\",\n    \"venous or arterial thromboembolic complications\"\n  ],\n  \"Diagnostics\": [\n    \"prothrombin time\",\n    \"d-dimer levels\",\n    \"thrombocytopenia\",\n    \"fibrinogen testing\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}\n```\n**Explanation:**\n\n* **Symptoms:** These are conditions or complications associated with COVID-19 that may require oxygen therapy escalation. They include stroke, pulmonary embolism, myocardial infarction, and venous or arterial thromboembolic complications.\n* **Diagnostics:** These are tests or measurements used to diagnose or monitor the progression of COVID-19-related coagulopathy. They include prothrombin time, d-dimer levels, thrombocytopenia, and fibrinogen testing.\n* **Pathogens:** This category includes only the COVID-19 virus, which is the underlying cause of pneumonia in hospitalized patients.\n\nNote that this extraction focuses on medical entities relevant to oxygen therapy escalation in hospitalized COVID-19 pneumonia. Other medical entities mentioned in the context block may not be directly related to this specific query.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 62.579365560212366
+    },
+    {
+      "query": "SARS-CoV-2 antibody testing and seroprevalence studies",
+      "gold": {
+        "Symptoms": [
+          "asymptomatic infection",
+          "mild fever",
+          "cough",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "enzyme-linked immunosorbent assay",
+          "chemiluminescent immunoassay",
+          "neutralizing antibody assay",
+          "lateral flow immunoassay"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Covid-19 diagnosis', 'description': ''}",
+          "{'name': 'Fever', 'description': ''}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Polymerase chain reaction (PCR) test', 'description': 'used to detect SARS-CoV-2 infection'}",
+          "{'name': 'SARS-CoV-2 antibody testing', 'description': 'used to detect antibodies against SARS-CoV-2'}"
+        ],
+        "Pathogens": [
+          "{'name': 'SARS-CoV-2', 'description': 'the virus causing COVID-19'}",
+          "{'name': 'Fibrinogen', 'description': 'a clotting factor that was found to be abnormal in COVID-19 patients'}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I have extracted relevant medical entities related to SARS-CoV-2 antibody testing and seroprevalence studies. Here are the results:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Covid-19 diagnosis\",\n      \"description\": \"\"\n    },\n    {\n      \"name\": \"Fever\",\n      \"description\": \"\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Polymerase chain reaction (PCR) test\",\n      \"description\": \"used to detect SARS-CoV-2 infection\"\n    },\n    {\n      \"name\": \"SARS-CoV-2 antibody testing\",\n      \"description\": \"used to detect antibodies against SARS-CoV-2\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"the virus causing COVID-19\"\n    },\n    {\n      \"name\": \"Fibrinogen\",\n      \"description\": \"a clotting factor that was found to be abnormal in COVID-19 patients\"\n    }\n  ]\n}\n```\n\nNote: The context does not provide explicit information on symptoms, but mentions \"symptoms leading to the performance of a SARS-CoV-2 PCR test\" which implies that fever might be one of them. However, this is an indirect inference and should be taken as such.\n\nAlso note that fibrinogen is mentioned in the context as a laboratory abnormality found in COVID-19 patients, but it's not typically classified as a pathogen. I've included it in the Pathogens category for completeness, but if you'd like to exclude it, please let me know!",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 61.116941922024395
+    },
+    {
+      "query": "Sepsis and shock in critically ill COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "hypotension",
+          "altered mental status",
+          "fever",
+          "tachypnea",
+          "oliguria"
+        ],
+        "Diagnostics": [
+          "lactate",
+          "blood culture",
+          "procalcitonin",
+          "SOFA score",
+          "arterial blood gas"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "Staphylococcus aureus",
+          "Escherichia coli"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [],
+        "Pathogens": []
+      },
+      "raw_output": "=== RETRIEVED CONTEXT ===\n[Doc 1 | cord_uid=row_00000204]\nleast 2. 0 \u00b5g / ml could predict mortality with a sensitivity of 92. 3 % and a specificity of 83. 3 % 10. an independent study of 43 covid - 19 patients found significant differences between mild and severe cases in plasma interleukin - 6 ( il - 6 ), d - dimers, glucose, thrombin time, fibrinogen, and creactive protein ( p < 0. 05 ) 4. while such studies indeed highlight that hematological and inflammatory abnormalities are prevalent in covidpos, a high - resolution temporal understanding of how these parameters evolve in covid - 19 patients post diagnosis has not been established. specifically, in the wake of accumulating evidence for hypercoagulability in covidpos patients, there are important clinical questions emerging regarding the necessity of and guidelines for thromboprophylaxis in patient management. the ability to derive this longitudinal understanding of covid - 19 progression, including laboratory abnormalities and their associated clinical manifestations, mandates the synthesis of structured and unstructured ehr data ( e. g., lab tests and clinical notes ) at a large scale. the fact that tens of thousands of patients have undergone sars - cov - 2 testing\n\n[Doc 2 | cord_uid=row_00000204]\npieces of clinical information, including but not limited to : ( 1 ) early hyperfibrinogenemia is to be expected in covid - 19 patients and may not be useful in determining an appropriate thromboprophylaxis approach for a given patient. ( 2 ) declining fibrinogen levels shortly after diagnosis are also expected and likely represent the resolution of an acute phase response in most patients rather than a decline secondary to the onset of consumptive coagulation. ( 3 ) borderline or overt thrombocytopenia is common in covid - 19 patients at the time of clinical presentation, and the initial platelet count does not robustly predict patients who are likely to develop thromboses. ( 4 ) after diagnosis, covid - 19 patients generally show an upward trend in platelets. patients whose platelets trend down after diagnosis should be monitored, as platelet reductions after clinical presentation are associated with thromboses and significant reductions may be indicative of ongoing consumptive coagulopathy. there certainly remains much to understand regarding the molecular pathophysiology underlying covid - 19 associated thromb",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 59.26005271295579
+    },
+    {
+      "query": "Post-COVID pulmonary fibrosis and chronic respiratory sequelae",
+      "gold": {
+        "Symptoms": [
+          "persistent dyspnea",
+          "exercise intolerance",
+          "dry cough",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "high-resolution chest CT",
+          "pulmonary function tests",
+          "diffusing capacity",
+          "six-minute walk test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "{'name': 'Pulmonary embolism', 'description': ''}",
+          "{'name': 'Deep vein thrombosis (DVT)', 'description': ''}",
+          "{'name': 'Thrombotic stroke', 'description': ''}",
+          "{'name': 'Myocardial infarction', 'description': ''}",
+          "{'name': 'Cerebral venous thrombosis', 'description': ''}",
+          "{'name': 'Hemorrhagic events (oropharyngeal and pulmonary)', 'description': ''}"
+        ],
+        "Diagnostics": [
+          "{'name': 'Fibrinogen testing', 'description': ''}",
+          "{'name': 'D-dimer levels', 'description': ''}",
+          "{'name': 'Prothrombin time (PT)', 'description': ''}"
+        ],
+        "Pathogens": [
+          "{'name': 'SARS-CoV-2', 'description': ''}"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, I've extracted relevant medical entities related to post-COVID pulmonary complications. Here are the results:\n\n```\n{\n  \"Symptoms\": [\n    {\n      \"name\": \"Pulmonary embolism\",\n      \"description\": \"\"\n    },\n    {\n      \"name\": \"Deep vein thrombosis (DVT)\",\n      \"description\": \"\"\n    },\n    {\n      \"name\": \"Thrombotic stroke\",\n      \"description\": \"\"\n    },\n    {\n      \"name\": \"Myocardial infarction\",\n      \"description\": \"\"\n    },\n    {\n      \"name\": \"Cerebral venous thrombosis\",\n      \"description\": \"\"\n    },\n    {\n      \"name\": \"Hemorrhagic events (oropharyngeal and pulmonary)\",\n      \"description\": \"\"\n    }\n  ],\n  \"Diagnostics\": [\n    {\n      \"name\": \"Fibrinogen testing\",\n      \"description\": \"\"\n    },\n    {\n      \"name\": \"D-dimer levels\",\n      \"description\": \"\"\n    },\n    {\n      \"name\": \"Prothrombin time (PT)\",\n      \"description\": \"\"\n    }\n  ],\n  \"Pathogens\": [\n    {\n      \"name\": \"SARS-CoV-2\",\n      \"description\": \"\"\n    }\n  ]\n}\n```\n\nThese medical entities are relevant to the user query on post-COVID pulmonary complications and chronic respiratory sequelae.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 59.412756652026744
+    }
+  ]
+}

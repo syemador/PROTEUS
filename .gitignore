@@ -1,0 +1,3 @@
+cache/index.clinicalbert/embeddings.pt
+cache/index.clinicalbert/manifest.json
+cache/index.clinicalbert/chunks.pkl

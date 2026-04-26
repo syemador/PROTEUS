@@ -1,0 +1,20 @@
+% ── Experiment 1: Paragraph insert ─────────────────────────────────────────
+% INSERT AT END OF \paragraph{Format Collapse as the Primary Extraction Bottleneck}
+% IN \subsection{Results: Keyword Extraction}
+
+To empirically separate the entity-knowledge component of Format Collapse
+from its syntactic-compliance component, we re-evaluate Task~2 using
+Ollama's native JSON-Schema grammar enforcement (\texttt{format} parameter;
+Ollama $\geq$0.1.24), which constrains the decoder's sampling distribution
+to outputs that are valid instances of the
+$\{\texttt{Symptoms},\texttt{Diagnostics},\texttt{Pathogens}\}$ schema
+by construction, bypassing Format Collapse at the decoding layer
+(Table~\ref{tab:keywords_constrained}).
+The constrained No-RAG baseline achieves $\mu$-F$_1 = 0.087$
+($\Delta_\mu = +0.075$ vs.\ native No-RAG).
+The large positive $\Delta_{{F_1}}$ on Symptoms (+0.074) confirms that entity knowledge was present in the model's parametric memory but syntactically inaccessible under native generation.
+The engineering implication is direct: constrained structured decoding is
+a \emph{mandatory architectural prerequisite} for 4-bit local keyword
+extraction, not an optimisation; and this experiment establishes the knowledge
+ceiling the bare parametric model can achieve once the compliance bottleneck
+is removed.

@@ -1,0 +1,1607 @@
+{
+  "experiment": "Exp1_ConstrainedDecoding",
+  "model": "llama3.1:8b-instruct-q4_K_M",
+  "decoding": "constrained_json_schema",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "Symptoms": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "Diagnostics": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "Pathogens": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "Symptoms",
+      "Diagnostics",
+      "Pathogens"
+    ],
+    "additionalProperties": false
+  },
+  "rag_enabled": true,
+  "retriever": "cbert",
+  "temperature": 0.0,
+  "n_prompts": 25,
+  "aggregate": {
+    "per_class": {
+      "Symptoms": {
+        "precision": 0.075,
+        "recall": 0.08342857142857144,
+        "f1": 0.07354680407311986
+      },
+      "Diagnostics": {
+        "precision": 0.02,
+        "recall": 0.006666666666666666,
+        "f1": 0.01
+      },
+      "Pathogens": {
+        "precision": 0.24,
+        "recall": 0.24,
+        "f1": 0.24
+      }
+    },
+    "micro_f1": 0.08663271700356098
+  },
+  "per_example": [
+    {
+      "query": "SARS-CoV-2 viremia and myocardial injury",
+      "gold": {
+        "Symptoms": [
+          "chest pain",
+          "dyspnea",
+          "palpitations",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "troponin",
+          "electrocardiogram",
+          "echocardiography",
+          "cardiac MRI"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "dry cough",
+          "fever"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"dry cough\", \"fever\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"SARS-CoV-2\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.3333333333333333,
+          "recall": 0.1111111111111111,
+          "f1": 0.16666666666666666
+        }
+      },
+      "tokens_per_second": 64.10421507961988,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Clinical presentation of COVID-19 pneumonia on admission",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "dry cough",
+          "dyspnea",
+          "fatigue",
+          "myalgia",
+          "anosmia",
+          "sore throat"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "chest CT",
+          "chest radiography",
+          "pulse oximetry",
+          "C-reactive protein"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fever",
+          "dry cough",
+          "dyspnea",
+          "chest pain",
+          "fatigue",
+          "myalgia",
+          "headache",
+          "dizziness",
+          "abdominal pain",
+          "diarrhea",
+          "nausea",
+          "vomiting"
+        ],
+        "Diagnostics": [
+          "bilateral pneumonia"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\n    \"fever\",\n    \"dry cough\",\n    \"dyspnea\",\n    \"chest pain\",\n    \"fatigue\",\n    \"myalgia\",\n    \"headache\",\n    \"dizziness\",\n    \"abdominal pain\",\n    \"diarrhea\",\n    \"nausea\",\n    \"vomiting\"\n  ],\n  \"Diagnostics\": [\n    \"bilateral pneumonia\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.4166666666666667,
+            "recall": 0.7142857142857143,
+            "f1": 0.5263157894736842
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.35714285714285715,
+          "recall": 0.38461538461538464,
+          "f1": 0.3703703703703704
+        }
+      },
+      "tokens_per_second": 63.22609258351553,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Coagulopathy and thrombotic complications in severe COVID-19",
+      "gold": {
+        "Symptoms": [
+          "dyspnea",
+          "chest pain",
+          "leg swelling"
+        ],
+        "Diagnostics": [
+          "D-dimer",
+          "fibrinogen",
+          "prothrombin time",
+          "platelet count",
+          "CT pulmonary angiography",
+          "venous duplex ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "stroke",
+          "pulmonary embolism",
+          "myocardial infarction"
+        ],
+        "Diagnostics": [
+          "d-dimer levels",
+          "prothrombin time"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"stroke\", \"pulmonary embolism\", \"myocardial infarction\"],\n  \"Diagnostics\": [\"d-dimer levels\", \"prothrombin time\"],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.5,
+            "recall": 0.16666666666666666,
+            "f1": 0.25
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.16666666666666666,
+          "recall": 0.1,
+          "f1": 0.125
+        }
+      },
+      "tokens_per_second": 63.49458304507658,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Multisystem inflammatory syndrome in children after SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "rash",
+          "conjunctivitis",
+          "abdominal pain",
+          "vomiting",
+          "diarrhea",
+          "hypotension"
+        ],
+        "Diagnostics": [
+          "C-reactive protein",
+          "ferritin",
+          "troponin",
+          "BNP",
+          "echocardiography",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "ageusia",
+          "anosmia",
+          "sore throat",
+          "breathlessness",
+          "fatigue",
+          "malaise"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"fever\", \"cough\", \"ageusia\", \"anosmia\", \"sore throat\", \"breathlessness\", \"fatigue\", \"malaise\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"SARS-CoV-2\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.125,
+            "recall": 0.14285714285714285,
+            "f1": 0.13333333333333333
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.2222222222222222,
+          "recall": 0.14285714285714285,
+          "f1": 0.17391304347826086
+        }
+      },
+      "tokens_per_second": 63.44080299840308,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Bacterial and fungal co-infections in hospitalized COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "worsening dyspnea",
+          "productive cough",
+          "hypotension"
+        ],
+        "Diagnostics": [
+          "blood culture",
+          "sputum culture",
+          "procalcitonin",
+          "galactomannan assay",
+          "bronchoalveolar lavage"
+        ],
+        "Pathogens": [
+          "Staphylococcus aureus",
+          "Streptococcus pneumoniae",
+          "Pseudomonas aeruginosa",
+          "Klebsiella pneumoniae",
+          "Aspergillus fumigatus",
+          "Candida albicans"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [
+          "CT images",
+          "chest CT images"
+        ],
+        "Pathogens": [
+          "COVID-19",
+          "influenza pneumonia",
+          "bacterial pneumonia"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [],\n  \"Diagnostics\": [\"CT images\", \"chest CT images\"],\n  \"Pathogens\": [\"COVID-19\", \"influenza pneumonia\", \"bacterial pneumonia\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 63.76503271273708,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Acute respiratory distress syndrome in mechanically ventilated COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "severe dyspnea",
+          "hypoxemia",
+          "tachypnea",
+          "cyanosis"
+        ],
+        "Diagnostics": [
+          "arterial blood gas",
+          "PaO2/FiO2 ratio",
+          "chest radiography",
+          "chest CT",
+          "lung ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "ARDS",
+          "acute respiratory distress syndrome"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"ARDS\", \"acute respiratory distress syndrome\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 68.83904947733045,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Neurological manifestations of COVID-19",
+      "gold": {
+        "Symptoms": [
+          "headache",
+          "anosmia",
+          "ageusia",
+          "confusion",
+          "seizures",
+          "stroke symptoms",
+          "encephalopathy"
+        ],
+        "Diagnostics": [
+          "brain MRI",
+          "CT head",
+          "cerebrospinal fluid analysis",
+          "electroencephalogram",
+          "RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "dizziness",
+          "loss of consciousness",
+          "headache"
+        ],
+        "Diagnostics": [],
+        "Pathogens": []
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"dizziness\", \"loss of consciousness\", \"headache\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": []\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.3333333333333333,
+            "recall": 0.14285714285714285,
+            "f1": 0.2
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.3333333333333333,
+          "recall": 0.07692307692307693,
+          "f1": 0.125
+        }
+      },
+      "tokens_per_second": 68.96228314810064,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Diabetes mellitus as a risk factor for severe COVID-19 outcomes",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "dyspnea",
+          "polyuria",
+          "polydipsia",
+          "altered mental status"
+        ],
+        "Diagnostics": [
+          "HbA1c",
+          "fasting glucose",
+          "blood ketones",
+          "arterial blood gas",
+          "RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "hyperglycemia"
+        ],
+        "Diagnostics": [],
+        "Pathogens": []
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"hyperglycemia\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": []\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 66.98201283061066,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Differential diagnosis of influenza and COVID-19 during respiratory season",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "sore throat",
+          "myalgia",
+          "fatigue",
+          "headache",
+          "anosmia"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "rapid antigen test",
+          "multiplex respiratory panel",
+          "chest radiography"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "influenza A virus",
+          "influenza B virus",
+          "respiratory syncytial virus"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "difficulty in breathing",
+          "tiredness"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "coronavirus",
+          "influenza"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"fever\", \"cough\", \"difficulty in breathing\", \"tiredness\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"coronavirus\", \"influenza\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.5,
+            "recall": 0.2857142857142857,
+            "f1": 0.36363636363636365
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.3333333333333333,
+          "recall": 0.13333333333333333,
+          "f1": 0.19047619047619044
+        }
+      },
+      "tokens_per_second": 63.85558336126239,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Long COVID and post-acute sequelae of SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "fatigue",
+          "dyspnea",
+          "brain fog",
+          "chest pain",
+          "palpitations",
+          "joint pain",
+          "headache",
+          "insomnia"
+        ],
+        "Diagnostics": [
+          "pulmonary function tests",
+          "echocardiography",
+          "cardiopulmonary exercise test",
+          "neurocognitive testing"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "dry cough",
+          "fever"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "SARS-COV-2"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"dry cough\", \"fever\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"SARS-COV-2\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.3333333333333333,
+          "recall": 0.07692307692307693,
+          "f1": 0.125
+        }
+      },
+      "tokens_per_second": 64.8440535989905,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Cytokine release syndrome markers in severe COVID-19",
+      "gold": {
+        "Symptoms": [
+          "high fever",
+          "hypotension",
+          "dyspnea",
+          "confusion"
+        ],
+        "Diagnostics": [
+          "interleukin-6",
+          "ferritin",
+          "C-reactive protein",
+          "lactate dehydrogenase",
+          "D-dimer"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "inflammatory responses",
+          "severe covid - 19"
+        ],
+        "Diagnostics": [
+          "c-reactive protein (crp)",
+          "tumor necrosis factor (tnf-)"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"inflammatory responses\", \"severe covid - 19\"],\n  \"Diagnostics\": [\"c-reactive protein (crp)\", \"tumor necrosis factor (tnf-)\"],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 64.02196904721859,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Gastrointestinal symptoms in COVID-19 and viral shedding",
+      "gold": {
+        "Symptoms": [
+          "diarrhea",
+          "nausea",
+          "vomiting",
+          "abdominal pain",
+          "loss of appetite"
+        ],
+        "Diagnostics": [
+          "stool RT-PCR",
+          "nasopharyngeal RT-PCR",
+          "liver function tests"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fever",
+          "dry cough",
+          "tiredness",
+          "breathing difficulty",
+          "nausea",
+          "vomiting",
+          "diarrhea",
+          "abdominal pain"
+        ],
+        "Diagnostics": [],
+        "Pathogens": []
+      },
+      "raw_output": "{\n  \"Symptoms\": [\n    \"fever\",\n    \"dry cough\",\n    \"tiredness\",\n    \"breathing difficulty\",\n    \"nausea\",\n    \"vomiting\",\n    \"diarrhea\",\n    \"abdominal pain\"\n  ],\n  \"Diagnostics\": [],\n  \"Pathogens\": []\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.5,
+            "recall": 0.8,
+            "f1": 0.6153846153846154
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.5,
+          "recall": 0.4444444444444444,
+          "f1": 0.47058823529411764
+        }
+      },
+      "tokens_per_second": 63.75931931031632,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Kawasaki-like illness in children during COVID-19 pandemic",
+      "gold": {
+        "Symptoms": [
+          "prolonged fever",
+          "rash",
+          "conjunctivitis",
+          "lymphadenopathy",
+          "red cracked lips",
+          "extremity swelling"
+        ],
+        "Diagnostics": [
+          "echocardiography",
+          "C-reactive protein",
+          "erythrocyte sedimentation rate",
+          "BNP",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "anxiety",
+          "stress",
+          "depression",
+          "ptsd",
+          "alcohol abuse"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "SARS-CoV"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"anxiety\", \"stress\", \"depression\", \"ptsd\", \"alcohol abuse\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"SARS-CoV\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 64.06667207284974,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Respiratory monitoring in home management of mild COVID-19",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "mild dyspnea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "pulse oximetry",
+          "home temperature monitoring",
+          "rapid antigen test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "ARDS",
+          "Acute Hypoxic Respiratory Failure"
+        ],
+        "Diagnostics": [
+          "Supplemental Oxygen",
+          "Invasive Mechanical Ventilation",
+          "Viral Myocarditis",
+          "Thrombotic Events",
+          "Superimposed Bacterial Pneumonia"
+        ],
+        "Pathogens": [
+          "COVID-19 Virus"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"ARDS\", \"Acute Hypoxic Respiratory Failure\"],\n  \"Diagnostics\": [\"Supplemental Oxygen\", \"Invasive Mechanical Ventilation\", \"Viral Myocarditis\", \"Thrombotic Events\", \"Superimposed Bacterial Pneumonia\"],\n  \"Pathogens\": [\"COVID-19 Virus\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 63.21734288581215,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Acute kidney injury in hospitalized COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "oliguria",
+          "edema",
+          "fatigue",
+          "nausea"
+        ],
+        "Diagnostics": [
+          "serum creatinine",
+          "blood urea nitrogen",
+          "urinalysis",
+          "urine output measurement",
+          "renal ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "acute kidney injury",
+          "acute liver injury"
+        ],
+        "Diagnostics": [
+          "prevalence rates",
+          "meta regression",
+          "pooled prevalence"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"acute kidney injury\", \"acute liver injury\"],\n  \"Diagnostics\": [\"prevalence rates\", \"meta regression\", \"pooled prevalence\"],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 63.26505575206677,
+      "decoding": "constrained"
+    },
+    {
+      "query": "COVID-19 in immunocompromised solid organ transplant recipients",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "dyspnea",
+          "diarrhea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "chest CT",
+          "C-reactive protein",
+          "lymphocyte count",
+          "drug level monitoring"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "cytomegalovirus"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "covid-19",
+          "severe respiratory conditions"
+        ],
+        "Diagnostics": [
+          "icd-9 codes",
+          "icd-10 codes",
+          "mimic-iii dataset"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"covid-19\", \"severe respiratory conditions\"],\n  \"Diagnostics\": [\"icd-9 codes\", \"icd-10 codes\", \"mimic-iii dataset\"],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 62.9484324850806,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Pulmonary embolism screening in COVID-19 patients with worsening hypoxemia",
+      "gold": {
+        "Symptoms": [
+          "sudden dyspnea",
+          "chest pain",
+          "tachycardia",
+          "hemoptysis"
+        ],
+        "Diagnostics": [
+          "D-dimer",
+          "CT pulmonary angiography",
+          "venous duplex ultrasound",
+          "electrocardiogram"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "worsening respiratory status",
+          "developing complications"
+        ],
+        "Diagnostics": [
+          "CT imaging",
+          "RT-PCR testing",
+          "Chest CT images",
+          "Ground-glass opacities",
+          "Patchy shadows",
+          "Crazy-paving pattern",
+          "Consolidation"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"worsening respiratory status\", \"developing complications\"],\n  \"Diagnostics\": [\"CT imaging\", \"RT-PCR testing\", \"Chest CT images\", \"Ground-glass opacities\", \"Patchy shadows\", \"Crazy-paving pattern\", \"Consolidation\"],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 62.77094972043045,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Dermatological manifestations associated with SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "maculopapular rash",
+          "urticaria",
+          "chilblain-like lesions",
+          "livedo reticularis",
+          "vesicular rash"
+        ],
+        "Diagnostics": [
+          "skin biopsy",
+          "RT-PCR",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "ageusia",
+          "anosmia",
+          "breathlessness",
+          "cough",
+          "fatigue",
+          "fever",
+          "malaise",
+          "sore throat"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "SARS-COV-2"
+        ]
+      },
+      "raw_output": "{ \"Symptoms\": [\"ageusia\", \"anosmia\", \"breathlessness\", \"cough\", \"fatigue\", \"fever\", \"malaise\", \"sore throat\"], \"Diagnostics\": [], \"Pathogens\": [\"SARS-COV-2\"] }",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.1111111111111111,
+          "recall": 0.1111111111111111,
+          "f1": 0.1111111111111111
+        }
+      },
+      "tokens_per_second": 62.903405335659386,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Elevated liver enzymes in COVID-19 clinical course",
+      "gold": {
+        "Symptoms": [
+          "jaundice",
+          "fatigue",
+          "abdominal pain",
+          "nausea"
+        ],
+        "Diagnostics": [
+          "ALT",
+          "AST",
+          "alkaline phosphatase",
+          "total bilirubin",
+          "abdominal ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "elevated liver enzymes",
+          "covid-19-related liver damage"
+        ],
+        "Diagnostics": [
+          "liver enzymes",
+          "TBIL concentration"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"elevated liver enzymes\", \"covid-19-related liver damage\"],\n  \"Diagnostics\": [\"liver enzymes\", \"TBIL concentration\"],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 68.06129510785425,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Pregnancy outcomes and vertical transmission risk of SARS-CoV-2",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "dyspnea",
+          "myalgia",
+          "preterm labor"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "fetal ultrasound",
+          "cardiotocography",
+          "neonatal RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [
+          "RNA viraemia",
+          "viral RNA load"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [],\n  \"Diagnostics\": [\"RNA viraemia\", \"viral RNA load\"],\n  \"Pathogens\": [\"SARS-CoV-2\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.3333333333333333,
+          "recall": 0.1,
+          "f1": 0.15384615384615383
+        }
+      },
+      "tokens_per_second": 69.26154512704007,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Mucormycosis secondary to COVID-19 corticosteroid therapy",
+      "gold": {
+        "Symptoms": [
+          "facial pain",
+          "nasal congestion",
+          "black eschar",
+          "periorbital swelling",
+          "vision loss",
+          "headache"
+        ],
+        "Diagnostics": [
+          "sinus CT",
+          "sinus MRI",
+          "KOH microscopy",
+          "fungal culture",
+          "tissue biopsy"
+        ],
+        "Pathogens": [
+          "Rhizopus",
+          "Mucor",
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "lung injury",
+          "lymphocyte counts",
+          "body temperature",
+          "creactive protein levels",
+          "oxygenation index"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"lung injury\", \"lymphocyte counts\", \"body temperature\", \"creactive protein levels\", \"oxygenation index\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 68.51302697103003,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Oxygen therapy escalation in hospitalized COVID-19 pneumonia",
+      "gold": {
+        "Symptoms": [
+          "progressive dyspnea",
+          "hypoxemia",
+          "tachypnea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "pulse oximetry",
+          "arterial blood gas",
+          "chest radiography",
+          "respiratory rate monitoring"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "ARDS",
+          "Acute hypoxic respiratory failure"
+        ],
+        "Diagnostics": [
+          "Respiratory failure prone"
+        ],
+        "Pathogens": [
+          "COVID-19 virus"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"ARDS\", \"Acute hypoxic respiratory failure\"],\n  \"Diagnostics\": [\"Respiratory failure prone\"],\n  \"Pathogens\": [\"COVID-19 virus\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 63.947113861054895,
+      "decoding": "constrained"
+    },
+    {
+      "query": "SARS-CoV-2 antibody testing and seroprevalence studies",
+      "gold": {
+        "Symptoms": [
+          "asymptomatic infection",
+          "mild fever",
+          "cough",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "enzyme-linked immunosorbent assay",
+          "chemiluminescent immunoassay",
+          "neutralizing antibody assay",
+          "lateral flow immunoassay"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [
+          "anti-bodies",
+          "seroprevalence studies",
+          "SARS-CoV-2 antibody testing"
+        ],
+        "Pathogens": [
+          "SARS-COV-2"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [],\n  \"Diagnostics\": [\"anti-bodies\", \"seroprevalence studies\", \"SARS-CoV-2 antibody testing\"],\n  \"Pathogens\": [\"SARS-COV-2\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.25,
+          "recall": 0.1111111111111111,
+          "f1": 0.15384615384615383
+        }
+      },
+      "tokens_per_second": 63.73730221163072,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Sepsis and shock in critically ill COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "hypotension",
+          "altered mental status",
+          "fever",
+          "tachypnea",
+          "oliguria"
+        ],
+        "Diagnostics": [
+          "lactate",
+          "blood culture",
+          "procalcitonin",
+          "SOFA score",
+          "arterial blood gas"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "Staphylococcus aureus",
+          "Escherichia coli"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "pneumonia",
+          "acute respiratory distress syndrome (ARDS)",
+          "multiple organ dysfunction syndrome (MODS)"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"pneumonia\", \"acute respiratory distress syndrome (ARDS)\", \"multiple organ dysfunction syndrome (MODS)\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 63.53689963317723,
+      "decoding": "constrained"
+    },
+    {
+      "query": "Post-COVID pulmonary fibrosis and chronic respiratory sequelae",
+      "gold": {
+        "Symptoms": [
+          "persistent dyspnea",
+          "exercise intolerance",
+          "dry cough",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "high-resolution chest CT",
+          "pulmonary function tests",
+          "diffusing capacity",
+          "six-minute walk test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "pulmonary fibrosis",
+          "chronic respiratory sequelae"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "{\n  \"Symptoms\": [\"pulmonary fibrosis\", \"chronic respiratory sequelae\"],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\"COVID-19\"]\n}",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 64.2981405419382,
+      "decoding": "constrained"
+    }
+  ]
+}

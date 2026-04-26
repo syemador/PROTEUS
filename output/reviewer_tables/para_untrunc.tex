@@ -1,0 +1,19 @@
+% ── Experiment 2: Paragraph insert ─────────────────────────────────────────
+% INSERT AT END OF \paragraph{RAG-Induced Conciseness and Verbosity Drift} IN SEC V
+
+\paragraph{Untruncated BS-F$_1^*$ (length-agnostic parallel metric).}
+To verify that the semantic performance gap between RAG and No-RAG
+conditions reflects a genuine capability difference rather than a
+mechanical artefact of the 150-token clinical-summary budget, we
+recompute BERTScore-F$_1$ on raw, untruncated generation outputs for
+all 8B configurations (Table~\ref{tab:bertscore_untrunc}).
+The 8B~No-RAG condition's longest output is 311 whitespace-separated
+tokens --- well within SciBERT's 512-token positional envelope ---
+so no positional truncation is incurred by this re-scoring.
+The untruncated RAG-vs-No-RAG contrast is
+$\Delta = +0.0230$
+(95\%~CI~$[0.0061,\, 0.0395]$, $p=0.013$),
+confirming that the semantic performance gap between RAG and No-RAG conditions is a genuine capability difference, not merely a budget artefact.
+The untruncated BS-F$_1^*$ column in Table~\ref{tab:bertscore_untrunc}
+establishes the baseline for each condition with the clinical-budget
+constraint lifted.

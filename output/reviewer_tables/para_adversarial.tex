@@ -1,0 +1,23 @@
+% ── Experiment 3: Paragraph insert ─────────────────────────────────────────
+% INSERT AT END OF \paragraph{RQ4: The Split-Partial NLI Diagnostic and the
+% Dormant Fail-Safe} IN \section{Discussion and Limitations}
+
+\paragraph{Adversarial Stress-Test of the Dormant Fail-Safe.}
+To validate that the $0/\NQA$ trigger rate on the standard held-out set
+reflects strong baseline compliance rather than a deactivated safety mechanism,
+we evaluate the bounded regeneration loop against a synthetic adversarial
+subset ($N=30$: 10 high-temperature re-runs at $T=0.8$, 10 conflicting-context
+injections, 10 parametric-conflict queries) explicitly designed to force $n_u
+> 0$ (Table~\ref{tab:adversarial_failsafe}).
+The loop triggers in 18/20 adversarial cases, with a lower-than-expected recovery rate, motivating multi-pass regeneration or stronger NLI-guided generation constraints for adversarial deployments.
+The split-context design in Sub-track~B is architecturally precise: the
+generator receives the fabricated sentence framed as \texttt{[Doc~0]} so it
+is maximally likely to incorporate it, while the verifier receives only real
+retrieved chunks --- isolating verifier sensitivity from generator compliance.
+The $0/\NQA$ baseline trigger rate and the adversarial trigger rate together
+define the \emph{operating envelope} of the Dormant Fail-Safe: compliant
+under standard clinical queries; active under adversarial pressure.  The
+loop's value lies not in baseline accuracy improvement (it never fires at
+$T=0.2$ with standard queries) but in providing a validated architectural
+backstop against the pathological generation events documented in
+Table~\ref{tab:adversarial_failsafe}.
