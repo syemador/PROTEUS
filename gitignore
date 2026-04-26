@@ -1,0 +1,131 @@
+# =============================================================================
+# P.R.O.T.E.U.S. — .gitignore
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Vector index cache  (auto-rebuilt on first run via data_processing.py)
+# embeddings.pt can be several hundred MB; chunks.pkl grows with corpus size.
+# The manifest.json IS tracked — it records the exact build parameters so
+# anyone can verify they reproduced the same index.
+# -----------------------------------------------------------------------------
+cache/*/embeddings.pt
+cache/*/chunks.pkl
+cache/*/bm25.pkl
+
+# -----------------------------------------------------------------------------
+# Windows Zone.Identifier alternate data streams (created when files are
+# downloaded on Windows and extracted via WSL — safe to ignore everywhere)
+# -----------------------------------------------------------------------------
+*#Uf03aZone.Identifier
+*Zone.Identifier
+
+# -----------------------------------------------------------------------------
+# Python bytecode and caches
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# -----------------------------------------------------------------------------
+# Virtual environments
+# -----------------------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# -----------------------------------------------------------------------------
+# PyTorch / model artefacts that are auto-downloaded from HuggingFace
+# (weights are fetched on first use; no need to commit them)
+# -----------------------------------------------------------------------------
+*.pt
+*.bin
+*.safetensors
+*.gguf
+*.ggml
+
+# Exclude the one .pt file we explicitly DO want tracked (none currently),
+# or use `git add -f <file>` to force-track specific tensors if needed.
+
+# -----------------------------------------------------------------------------
+# Pickle files (large serialised objects)
+# -----------------------------------------------------------------------------
+*.pkl
+*.pickle
+
+# HuggingFace hub cache (downloaded model weights)
+~/.cache/huggingface/
+.cache/huggingface/
+
+# -----------------------------------------------------------------------------
+# Large intermediate result files
+# Raw NLI pair exports can be hundreds of MB and are reproducible from the
+# QA result JSONs via rerun_all.py phase 3.
+# -----------------------------------------------------------------------------
+output/results/nli_pairs_raw.jsonl
+
+# Smoke test and scratch outputs
+output/results/smoke_test*.json
+output/results/qa_8b_hybrid_full_corpus.json
+output/results/qa_8b_rag_cbert_pairs.json
+
+# -----------------------------------------------------------------------------
+# OS and editor noise
+# -----------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# -----------------------------------------------------------------------------
+# Logs
+# -----------------------------------------------------------------------------
+*.log
+logs/
+*.out
+
+# -----------------------------------------------------------------------------
+# Build / packaging
+# -----------------------------------------------------------------------------
+dist/
+build/
+*.egg-info/
+*.egg
+MANIFEST
+site/
+
+# -----------------------------------------------------------------------------
+# Jupyter
+# -----------------------------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb
+
+# -----------------------------------------------------------------------------
+# LaTeX auxiliary files (keep .tex sources; ignore compilation artefacts)
+# -----------------------------------------------------------------------------
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.toc
+*.xdv
