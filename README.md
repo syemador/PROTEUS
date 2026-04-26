@@ -376,7 +376,7 @@ VRAM budget at top-*k* = 5: 8B Q4 (≈4.7 GB) + ClinicalBERT encoder (≈0.5 GB)
                for Text Extraction and Understanding Systems ---
                A Local Biomedical {RAG} Harness for {CORD-19}
                Clinical {QA} and Keyword Extraction},
-  author    = {Antar, Siam Shibly and Ador, Syem Shibly and Fung, Benjamin C. M. and Ding,    Steven},
+  author    = {Antar, Siam Shibly and Ador, Syem Shibly and Fung, Benjamin C. M. and Ding, Steven},
   journal   = {Under Review},
   year      = {2025}
 }
