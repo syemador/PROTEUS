@@ -1,0 +1,44 @@
+% ── Experiment 1: Constrained Decoding Table ────────────────────────────────
+% INSERT AFTER \tab{tab:keywords} IN \subsection{Results: Keyword Extraction}
+
+\begin{table*}[t]
+\centering
+\caption{%
+  Dual keyword-extraction evaluation: native generation vs.\ constrained
+  structured decoding (Ollama JSON-Schema grammar enforcement,
+  \texttt{format} parameter, Ollama $\geq$0.1.24).
+  P\,=\,Precision, R\,=\,Recall, $\mu$-F$_1$\,=\,micro-averaged F$_1$.
+  $\Delta$ rows quantify the Format Collapse penalty per entity class
+  (constrained $-$ native); a large positive $\Delta$ on Symptoms or
+  Diagnostics proves entity knowledge was present but syntactically
+  inaccessible under native 4-bit generation --- \emph{a compliance gap,
+  not a knowledge gap}.
+}
+\label{tab:keywords_constrained}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrr rrr rrr r@{}}
+\toprule
+\textbf{Configuration} &
+  \multicolumn{3}{c}{\textbf{Symptoms}} &
+  \multicolumn{3}{c}{\textbf{Diagnostics}} &
+  \multicolumn{3}{c}{\textbf{Pathogens}} & \\
+ & P & R & F1 & P & R & F1 & P & R & F1 & \textbf{$\mu$-F$_1$} \\
+\midrule
+\textit{Native} (native RAG (cbert)) & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} \\
+\textit{Constrained} (constrained cbert$^\ddagger$) & 0.075 & 0.083 & 0.074 & 0.020 & 0.007 & 0.010 & 0.240 & 0.240 & 0.240 & 0.087 \\
+\midrule
+$\Delta$ (constrained $-$ native) & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} & \PH{} \\
+\bottomrule
+\end{tabular}
+\vspace{4pt}
+\begin{minipage}{\linewidth}
+\footnotesize
+$^\ddagger$~Constrained decoding via Ollama JSON-Schema format enforcement
+guarantees syntactically valid output by construction, bypassing Format Collapse
+at the sampler level.  A large positive $\Delta_{F_1}$ on Symptoms or
+Diagnostics isolates the Format Collapse penalty: the entity knowledge was present
+in parametric memory but was lost to syntactic non-compliance under native 4-bit
+generation.  A near-zero $\Delta$ on Pathogens confirms that proper-noun entities
+are robust to quantization-induced format degradation.
+\end{minipage}
+\end{table*}

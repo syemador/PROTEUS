@@ -1,0 +1,39 @@
+{
+  "native_label": "native RAG (cbert)",
+  "constrained_label": "constrained cbert",
+  "native_aggregate": {
+    "micro_precision_mean": 0.0788888888888889,
+    "micro_recall_mean": 0.03223931623931624,
+    "micro_f1_mean": 0.04502699055330634,
+    "symptoms_precision_mean": 0.05333333333333334,
+    "symptoms_recall_mean": 0.04,
+    "symptoms_f1_mean": 0.04531468531468532,
+    "diagnostics_precision_mean": 0.0,
+    "diagnostics_recall_mean": 0.0,
+    "diagnostics_f1_mean": 0.0,
+    "pathogens_precision_mean": 0.12,
+    "pathogens_recall_mean": 0.12,
+    "pathogens_f1_mean": 0.12
+  },
+  "constrained_aggregate": {
+    "per_class": {
+      "Symptoms": {
+        "precision": 0.075,
+        "recall": 0.08342857142857144,
+        "f1": 0.07354680407311986
+      },
+      "Diagnostics": {
+        "precision": 0.02,
+        "recall": 0.006666666666666666,
+        "f1": 0.01
+      },
+      "Pathogens": {
+        "precision": 0.24,
+        "recall": 0.24,
+        "f1": 0.24
+      }
+    },
+    "micro_f1": 0.08663271700356098
+  },
+  "delta_micro_f1": 0.08663271700356098
+}

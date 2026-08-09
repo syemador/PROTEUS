@@ -1,0 +1,12 @@
+{
+  "dataset_config": null,
+  "dataset_id": "pritamdeka/cord-19-fulltext",
+  "dataset_split": "train",
+  "dtype": "torch.float32",
+  "embed_dim": 768,
+  "encoder_model_name": "emilyalsentzer/Bio_ClinicalBERT",
+  "max_documents": 50000,
+  "n_chunks": 48114,
+  "shuffle_seed": 42,
+  "version": 2
+}

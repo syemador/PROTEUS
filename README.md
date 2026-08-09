@@ -149,6 +149,12 @@ not model tokens. Chunking parameters and throughput are in model tokens.
 **Only body text is chunked.** The `pritamdeka/cord-19-fulltext` mirror exposes
 a single `fulltext` column; title and abstract fields are empty in this mirror.
 
+**The dotted project name persists in the code.** Source docstrings and the
+generator's system prompt still read `P.R.O.T.E.U.S.`, the original project
+name. The system prompt is left unchanged deliberately: it is part of the
+experimental record, and editing it would mean the released code no longer
+reproduces the reported numbers.
+
 See `PROVENANCE.md` for how this release was assembled and which files came from
 which export.
 

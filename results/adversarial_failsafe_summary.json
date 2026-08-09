@@ -1,0 +1,49 @@
+{
+  "experiment": "Exp3_AdversarialFailsafe",
+  "summary": {
+    "B": {
+      "n_queries": 10,
+      "n_triggered": 8,
+      "trigger_rate": 0.8,
+      "n_regenerated": 8,
+      "n_recovered": 1,
+      "recovery_rate": 0.125,
+      "pre_regen_label_totals": {
+        "supported": 4,
+        "partial": 2,
+        "unsupported": 11,
+        "weak_entailment": 0,
+        "citation_noncompliance": 0
+      },
+      "post_regen_label_totals": {
+        "supported": 12,
+        "partial": 6,
+        "unsupported": 11,
+        "weak_entailment": 0,
+        "citation_noncompliance": 0
+      }
+    },
+    "C": {
+      "n_queries": 10,
+      "n_triggered": 10,
+      "trigger_rate": 1.0,
+      "n_regenerated": 10,
+      "n_recovered": 0,
+      "recovery_rate": 0.0,
+      "pre_regen_label_totals": {
+        "supported": 7,
+        "partial": 5,
+        "unsupported": 15,
+        "weak_entailment": 0,
+        "citation_noncompliance": 0
+      },
+      "post_regen_label_totals": {
+        "supported": 8,
+        "partial": 4,
+        "unsupported": 16,
+        "weak_entailment": 0,
+        "citation_noncompliance": 0
+      }
+    }
+  }
+}

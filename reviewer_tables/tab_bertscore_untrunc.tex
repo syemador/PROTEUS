@@ -1,0 +1,46 @@
+% ── Experiment 2: Untruncated BERTScore ─────────────────────────────────────
+% INSERT AFTER \paragraph{RAG-Induced Conciseness and Verbosity Drift} IN SEC V
+% Significance (untrunc): delta=0.0230  CI=[0.0061,0.0395]  $p=0.013$  significant
+
+\begin{table}[t]
+\centering
+\caption{%
+  Truncated vs.\ untruncated BERTScore-F$_1$ across 8B configurations
+  on the $\NQA$-question held-out set.  BS-F$_1$ (trunc.) is the primary
+  clinical-budget metric (150-token cap applied identically to all conditions).
+  BS-F$_1^*$ (untrunc.) recomputes over the full generation text, clipped at
+  480 words only to respect SciBERT's 512-token limit.
+  $\Delta = \text{untrunc.} - \text{trunc.}$: positive values confirm the
+  budget cap depressed the primary metric for that condition.
+  ``\% gen $>$150'' is the proportion of outputs affected by the cap.
+}
+\label{tab:bertscore_untrunc}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Configuration} &
+  \textbf{BS-F$_1$ (trunc.)} &
+  \textbf{BS-F$_1^*$ (untrunc.)} &
+  \textbf{$\Delta$} &
+  \textbf{$\%$ gen $>$150} \\
+\midrule
+8B Q4 + RAG (ClinicalBERT) & 0.5871 & 0.5868 & -0.0004 & 10\% \\
+8B Q4 + RAG (MedCPT) & 0.5862 & 0.5824 & -0.0038 & 37\% \\
+8B Q4 + RAG (MiniLM) & 0.5756 & 0.5738 & -0.0018 & 23\% \\
+8B Q4 (No RAG)$^\dagger$ & 0.5935 & 0.5637 & -0.0297 & 63\% \\
+8B Q4 + RAG + NLI Check & 0.5871 & 0.5872 & +0.0001 & 7\% \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{4pt}
+\begin{minipage}{\linewidth}
+\footnotesize
+$^\dagger$~8B~No-RAG has the largest $\Delta$ because the 150-token cap
+discards a mean 20.8\% of its content.  A large positive $\Delta$ confirms
+the budget cap artificially depressed the primary BS-F$_1$ for this condition.
+The sign and magnitude of the untruncated RAG-vs-No-RAG contrast determines
+whether the performance gap is a genuine capability difference or a budget
+artefact (\S\ref{sec:metrics}).
+\end{minipage}
+\end{table}

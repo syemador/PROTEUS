@@ -1,0 +1,1622 @@
+{
+  "task": "keywords",
+  "model": "claude-sonnet",
+  "backend": "anthropic",
+  "rag_enabled": true,
+  "verifier_enabled": false,
+  "verifier_mode": "standard",
+  "retriever": "clinicalbert",
+  "retrieval_mode": "hybrid",
+  "reranker": "cross-encoder",
+  "context_assembly": "lost-in-the-middle",
+  "hf_dataset": "pritamdeka/cord-19-fulltext",
+  "max_documents": null,
+  "top_k": 5,
+  "n_queries": 25,
+  "aggregate": {
+    "micro_precision_mean": 0.09749150849150849,
+    "micro_recall_mean": 0.07936385836385837,
+    "micro_f1_mean": 0.08317139015134228,
+    "symptoms_precision_mean": 0.05525541125541125,
+    "symptoms_recall_mean": 0.06142857142857142,
+    "symptoms_f1_mean": 0.05371428571428572,
+    "diagnostics_precision_mean": 0.04,
+    "diagnostics_recall_mean": 0.022666666666666665,
+    "diagnostics_f1_mean": 0.027777777777777776,
+    "pathogens_precision_mean": 0.22,
+    "pathogens_recall_mean": 0.36,
+    "pathogens_f1_mean": 0.26
+  },
+  "latency": {
+    "tokens_per_second_mean": 4.399885477336954,
+    "tokens_per_second_std": 0.08366142328295423,
+    "wall_seconds_mean": 41.59552130192007,
+    "n_samples": 25
+  },
+  "per_example": [
+    {
+      "query": "SARS-CoV-2 viremia and myocardial injury",
+      "gold": {
+        "Symptoms": [
+          "chest pain",
+          "dyspnea",
+          "palpitations",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "troponin",
+          "electrocardiogram",
+          "echocardiography",
+          "cardiac MRI"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "dry cough",
+          "fever",
+          "myocardial injury",
+          "acute kidney injury"
+        ],
+        "Diagnostics": [
+          "laboratory-confirmed infections",
+          "acute heart infarction",
+          "acute kidney failure",
+          "liver injury"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "SARS-CoV-1",
+          "MERS-CoV"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, the medical entities relevant to the query \"SARS-CoV-2 viremia and myocardial injury\" can be extracted and categorized as follows:\n\n```json\n{\n  \"Symptoms\": [\n    \"dry cough\",\n    \"fever\",\n    \"myocardial injury\",\n    \"acute kidney injury\"\n  ],\n  \"Diagnostics\": [\n    \"laboratory-confirmed infections\",\n    \"acute heart infarction\",\n    \"acute kidney failure\",\n    \"liver injury\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\",\n    \"SARS-CoV-1\",\n    \"MERS-CoV\"\n  ]\n}\n```\n\nNote that \"SARS-CoV-2 viremia\" is not explicitly mentioned in the retrieved context, but it is related to the topic of SARS-CoV-2 infection, which is discussed in the context. The extracted entities are relevant to the query and are categorized accordingly.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.3333333333333333,
+            "recall": 1.0,
+            "f1": 0.5
+          }
+        },
+        "micro": {
+          "precision": 0.09090909090909091,
+          "recall": 0.1111111111111111,
+          "f1": 0.09999999999999999
+        }
+      },
+      "tokens_per_second": 4.04183541592178
+    },
+    {
+      "query": "Clinical presentation of COVID-19 pneumonia on admission",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "dry cough",
+          "dyspnea",
+          "fatigue",
+          "myalgia",
+          "anosmia",
+          "sore throat"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "chest CT",
+          "chest radiography",
+          "pulse oximetry",
+          "C-reactive protein"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fever",
+          "dry cough",
+          "dyspnea",
+          "chest pain",
+          "fatigue",
+          "myalgia",
+          "headache",
+          "dizziness",
+          "abdominal pain",
+          "diarrhea",
+          "nausea",
+          "vomiting",
+          "taste disorders",
+          "smell disorders"
+        ],
+        "Diagnostics": [
+          "bilateral pneumonia",
+          "acute respiratory distress syndrome",
+          "thrombotic complications"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the provided context, the medical entities relevant to the clinical presentation of COVID-19 pneumonia on admission are:\n\n```json\n{\n  \"Symptoms\": [\n    \"fever\",\n    \"dry cough\",\n    \"dyspnea\",\n    \"chest pain\",\n    \"fatigue\",\n    \"myalgia\",\n    \"headache\",\n    \"dizziness\",\n    \"abdominal pain\",\n    \"diarrhea\",\n    \"nausea\",\n    \"vomiting\",\n    \"taste disorders\",\n    \"smell disorders\"\n  ],\n  \"Diagnostics\": [\n    \"bilateral pneumonia\",\n    \"acute respiratory distress syndrome\",\n    \"thrombotic complications\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}\n```\n\nThese extracted entities are categorized into Symptoms, Diagnostics, and Pathogens, providing a comprehensive overview of the clinical presentation of COVID-19 pneumonia on admission.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.35714285714285715,
+            "recall": 0.7142857142857143,
+            "f1": 0.4761904761904762
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.2777777777777778,
+          "recall": 0.38461538461538464,
+          "f1": 0.3225806451612903
+        }
+      },
+      "tokens_per_second": 4.4554147416573
+    },
+    {
+      "query": "Coagulopathy and thrombotic complications in severe COVID-19",
+      "gold": {
+        "Symptoms": [
+          "dyspnea",
+          "chest pain",
+          "leg swelling"
+        ],
+        "Diagnostics": [
+          "D-dimer",
+          "fibrinogen",
+          "prothrombin time",
+          "platelet count",
+          "CT pulmonary angiography",
+          "venous duplex ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "stroke",
+          "pulmonary embolism",
+          "myocardial infarction",
+          "thromboembolic complications",
+          "thrombocytopenia"
+        ],
+        "Diagnostics": [
+          "D-dimer levels",
+          "prothrombin time"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the provided context, the extracted medical entities relevant to the query \"Coagulopathy and thrombotic complications in severe COVID-19\" are categorized as follows:\n\n```json\n{\n  \"Symptoms\": [\n    \"stroke\",\n    \"pulmonary embolism\",\n    \"myocardial infarction\",\n    \"thromboembolic complications\",\n    \"thrombocytopenia\"\n  ],\n  \"Diagnostics\": [\n    \"D-dimer levels\",\n    \"prothrombin time\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}\n```\n\nNote that \"coagulopathy\" is a condition related to blood clotting disorders, which is mentioned in the context as \"COVID-19 associated coagulopathy (CAC)\" and \"disseminated intravascular coagulation (DIC)\". However, it is not explicitly categorized as a symptom, diagnostic, or pathogen. Instead, it is a broader concept that encompasses various symptoms and diagnostics related to blood clotting disorders in the context of COVID-19.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.5,
+            "recall": 0.16666666666666666,
+            "f1": 0.25
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.125,
+          "recall": 0.1,
+          "f1": 0.11111111111111112
+        }
+      },
+      "tokens_per_second": 4.457276168790139
+    },
+    {
+      "query": "Multisystem inflammatory syndrome in children after SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "rash",
+          "conjunctivitis",
+          "abdominal pain",
+          "vomiting",
+          "diarrhea",
+          "hypotension"
+        ],
+        "Diagnostics": [
+          "C-reactive protein",
+          "ferritin",
+          "troponin",
+          "BNP",
+          "echocardiography",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "ageusia",
+          "anosmia",
+          "sore throat",
+          "breathlessness",
+          "fatigue",
+          "malaise",
+          "pneumonia",
+          "acute respiratory distress syndrome (ARDS)",
+          "multi organ dysfunction illness"
+        ],
+        "Diagnostics": [
+          "elevated plasma concentrations of interleukins 6 (IL-6)",
+          "cytokine storm"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the provided context, here is the extracted information relevant to the user query, categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [\n    \"fever\",\n    \"cough\",\n    \"ageusia\",\n    \"anosmia\",\n    \"sore throat\",\n    \"breathlessness\",\n    \"fatigue\",\n    \"malaise\",\n    \"pneumonia\",\n    \"acute respiratory distress syndrome (ARDS)\",\n    \"multi organ dysfunction illness\"\n  ],\n  \"Diagnostics\": [\n    \"elevated plasma concentrations of interleukins 6 (IL-6)\",\n    \"cytokine storm\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nNote that \"multisystem inflammatory syndrome in children\" is not explicitly mentioned in the provided context, but it is related to the topic of SARS-CoV-2 infection and its effects. If more context or information is provided, I can try to extract more relevant medical entities.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.09090909090909091,
+            "recall": 0.14285714285714285,
+            "f1": 0.1111111111111111
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.14285714285714285,
+          "recall": 0.14285714285714285,
+          "f1": 0.14285714285714285
+        }
+      },
+      "tokens_per_second": 4.446653619367271
+    },
+    {
+      "query": "Bacterial and fungal co-infections in hospitalized COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "worsening dyspnea",
+          "productive cough",
+          "hypotension"
+        ],
+        "Diagnostics": [
+          "blood culture",
+          "sputum culture",
+          "procalcitonin",
+          "galactomannan assay",
+          "bronchoalveolar lavage"
+        ],
+        "Pathogens": [
+          "Staphylococcus aureus",
+          "Streptococcus pneumoniae",
+          "Pseudomonas aeruginosa",
+          "Klebsiella pneumoniae",
+          "Aspergillus fumigatus",
+          "Candida albicans"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "pneumonia"
+        ],
+        "Diagnostics": [
+          "CT images",
+          "chest CT images"
+        ],
+        "Pathogens": [
+          "COVID-19",
+          "bacterial pneumonia",
+          "influenza pneumonia"
+        ]
+      },
+      "raw_output": "Based on the provided context, here are the extracted medical entities relevant to the user query, categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [\n    \"pneumonia\"\n  ],\n  \"Diagnostics\": [\n    \"CT images\",\n    \"chest CT images\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\",\n    \"bacterial pneumonia\",\n    \"influenza pneumonia\"\n  ]\n}\n```\n\nNote that the context does not explicitly mention fungal co-infections, but it does mention bacterial pneumonia as a co-infection. The user query mentions bacterial and fungal co-infections, but the context only provides information on bacterial co-infections. Therefore, the extracted entities are limited to the information available in the context.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.413082546413066
+    },
+    {
+      "query": "Acute respiratory distress syndrome in mechanically ventilated COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "severe dyspnea",
+          "hypoxemia",
+          "tachypnea",
+          "cyanosis"
+        ],
+        "Diagnostics": [
+          "arterial blood gas",
+          "PaO2/FiO2 ratio",
+          "chest radiography",
+          "chest CT",
+          "lung ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "acute respiratory distress syndrome (ARDS)",
+          "severe respiratory symptoms",
+          "extreme difficulty breathing",
+          "fluid leaking into the lungs",
+          "hypoxemia"
+        ],
+        "Diagnostics": [
+          "aspartate aminotransferase (AST)",
+          "alanine aminotransferase (ALT)",
+          "alkaline phosphatase (ALP)",
+          "total bilirubin (TBIL)",
+          "lactate dehydrogenase (LDH)"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "COVID-19",
+          "Severe Acute Respiratory Syndrome Coronavirus"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, the extracted medical entities relevant to the query \"Acute respiratory distress syndrome in mechanically ventilated COVID-19 patients\" are categorized as follows:\n\n```json\n{\n  \"Symptoms\": [\n    \"acute respiratory distress syndrome (ARDS)\",\n    \"severe respiratory symptoms\",\n    \"extreme difficulty breathing\",\n    \"fluid leaking into the lungs\",\n    \"hypoxemia\"\n  ],\n  \"Diagnostics\": [\n    \"aspartate aminotransferase (AST)\",\n    \"alanine aminotransferase (ALT)\",\n    \"alkaline phosphatase (ALP)\",\n    \"total bilirubin (TBIL)\",\n    \"lactate dehydrogenase (LDH)\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\",\n    \"COVID-19\",\n    \"Severe Acute Respiratory Syndrome Coronavirus\"\n  ]\n}\n```\n\nThese extracted entities are relevant to the query and are categorized into Symptoms, Diagnostics, and Pathogens. Note that some of these entities may be mentioned in the context as related to COVID-19 or mechanical ventilation, but are not directly mentioned in the query. However, they are still relevant to the",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.2,
+            "recall": 0.25,
+            "f1": 0.22222222222222224
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.3333333333333333,
+            "recall": 1.0,
+            "f1": 0.5
+          }
+        },
+        "micro": {
+          "precision": 0.15384615384615385,
+          "recall": 0.2,
+          "f1": 0.17391304347826086
+        }
+      },
+      "tokens_per_second": 4.350824375779583
+    },
+    {
+      "query": "Neurological manifestations of COVID-19",
+      "gold": {
+        "Symptoms": [
+          "headache",
+          "anosmia",
+          "ageusia",
+          "confusion",
+          "seizures",
+          "stroke symptoms",
+          "encephalopathy"
+        ],
+        "Diagnostics": [
+          "brain MRI",
+          "CT head",
+          "cerebrospinal fluid analysis",
+          "electroencephalogram",
+          "RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "dizziness",
+          "loss of consciousness",
+          "headache"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, the medical entities relevant to the query \"Neurological manifestations of COVID-19\" are:\n\n```json\n{\n  \"Symptoms\": [\n    \"dizziness\",\n    \"loss of consciousness\",\n    \"headache\"\n  ],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}\n```\n\nThese entities are categorized as follows:\n\n* Symptoms: The context mentions \"dizziness\", \"loss of consciousness\", and \"headache\" as neurological manifestations of COVID-19.\n* Diagnostics: There are no diagnostic entities mentioned in the context related to neurological manifestations of COVID-19.\n* Pathogens: COVID-19 is the pathogen mentioned in the context as the cause of the neurological manifestations.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.3333333333333333,
+            "recall": 0.14285714285714285,
+            "f1": 0.2
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.25,
+          "recall": 0.07692307692307693,
+          "f1": 0.11764705882352941
+        }
+      },
+      "tokens_per_second": 4.4120398108222965
+    },
+    {
+      "query": "Diabetes mellitus as a risk factor for severe COVID-19 outcomes",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "dyspnea",
+          "polyuria",
+          "polydipsia",
+          "altered mental status"
+        ],
+        "Diagnostics": [
+          "HbA1c",
+          "fasting glucose",
+          "blood ketones",
+          "arterial blood gas",
+          "RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "hyperglycemia",
+          "heart failure",
+          "myocarditis",
+          "respiratory failure"
+        ],
+        "Diagnostics": [
+          "prevalence of covid-19 among diabetic patients"
+        ],
+        "Pathogens": [
+          "influenza",
+          "COVID-19",
+          "coronavirus"
+        ]
+      },
+      "raw_output": "Based on the provided context, the extracted medical entities relevant to the query \"Diabetes mellitus as a risk factor for severe COVID-19 outcomes\" are categorized as follows:\n\n```json\n{\n  \"Symptoms\": [\n    \"hyperglycemia\",\n    \"heart failure\",\n    \"myocarditis\",\n    \"respiratory failure\"\n  ],\n  \"Diagnostics\": [\n    \"prevalence of covid-19 among diabetic patients\"\n  ],\n  \"Pathogens\": [\n    \"influenza\",\n    \"COVID-19\",\n    \"coronavirus\"\n  ]\n}\n```\n\nNote that \"diabetes\" itself is not explicitly categorized, as it is the context of the query rather than a specific symptom, diagnostic, or pathogen being extracted. However, its relationship to the extracted entities is implied throughout the context.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.421687064618142
+    },
+    {
+      "query": "Differential diagnosis of influenza and COVID-19 during respiratory season",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "sore throat",
+          "myalgia",
+          "fatigue",
+          "headache",
+          "anosmia"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "rapid antigen test",
+          "multiplex respiratory panel",
+          "chest radiography"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "influenza A virus",
+          "influenza B virus",
+          "respiratory syncytial virus"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "difficulty in breathing",
+          "tiredness",
+          "pneumonia"
+        ],
+        "Diagnostics": [
+          "misdiagnosis",
+          "detection"
+        ],
+        "Pathogens": [
+          "coronavirus",
+          "SARS",
+          "MERS",
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the provided context, here are the extracted medical entities relevant to the user query, categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [\n    \"fever\",\n    \"cough\",\n    \"difficulty in breathing\",\n    \"tiredness\",\n    \"pneumonia\"\n  ],\n  \"Diagnostics\": [\n    \"misdiagnosis\",\n    \"detection\"\n  ],\n  \"Pathogens\": [\n    \"coronavirus\",\n    \"SARS\",\n    \"MERS\",\n    \"COVID-19\"\n  ]\n}\n```\n\nNote that the context does not explicitly mention influenza, but it is implied as a potential differential diagnosis for COVID-19 during the respiratory season. The extracted entities are based on the provided context and may not be exhaustive for the topic of differential diagnosis of influenza and COVID-19.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.4,
+            "recall": 0.2857142857142857,
+            "f1": 0.3333333333333333
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.18181818181818182,
+          "recall": 0.13333333333333333,
+          "f1": 0.15384615384615383
+        }
+      },
+      "tokens_per_second": 4.432871782557203
+    },
+    {
+      "query": "Long COVID and post-acute sequelae of SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "fatigue",
+          "dyspnea",
+          "brain fog",
+          "chest pain",
+          "palpitations",
+          "joint pain",
+          "headache",
+          "insomnia"
+        ],
+        "Diagnostics": [
+          "pulmonary function tests",
+          "echocardiography",
+          "cardiopulmonary exercise test",
+          "neurocognitive testing"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "dry cough",
+          "fever",
+          "acute myocardial injury",
+          "acute kidney injury"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "SARS-COV-2",
+          "SARS-COV-1",
+          "MERS-COV"
+        ]
+      },
+      "raw_output": "Based on the provided context, here is the extracted information categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [\n    \"dry cough\",\n    \"fever\",\n    \"acute myocardial injury\",\n    \"acute kidney injury\"\n  ],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\n    \"SARS-COV-2\",\n    \"SARS-COV-1\",\n    \"MERS-COV\"\n  ]\n}\n```\n\nNote that the context does not provide specific diagnostic methods or tests, which is why the \"Diagnostics\" category is empty. The \"Symptoms\" category includes the mentioned symptoms of COVID-19, and the \"Pathogens\" category includes the mentioned coronaviruses.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.3333333333333333,
+            "recall": 1.0,
+            "f1": 0.5
+          }
+        },
+        "micro": {
+          "precision": 0.14285714285714285,
+          "recall": 0.07692307692307693,
+          "f1": 0.1
+        }
+      },
+      "tokens_per_second": 4.412027823557169
+    },
+    {
+      "query": "Cytokine release syndrome markers in severe COVID-19",
+      "gold": {
+        "Symptoms": [
+          "high fever",
+          "hypotension",
+          "dyspnea",
+          "confusion"
+        ],
+        "Diagnostics": [
+          "interleukin-6",
+          "ferritin",
+          "C-reactive protein",
+          "lactate dehydrogenase",
+          "D-dimer"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [
+          "C-reactive protein (CRP)",
+          "tumor necrosis factor (TNF-)",
+          "interleukin-6 (IL-6)"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, the medical entities relevant to the user query \"Cytokine release syndrome markers in severe COVID-19\" can be extracted and categorized as follows:\n\n```json\n{\n  \"Symptoms\": [],\n  \"Diagnostics\": [\"C-reactive protein (CRP)\", \"tumor necrosis factor (TNF-)\", \"interleukin-6 (IL-6)\"],\n  \"Pathogens\": [\"COVID-19\"]\n}\n```\n\nNote that CRP, TNF-, and IL-6 are considered diagnostic markers for severe COVID-19, as they are used to predict the severity of the disease. COVID-19 is the pathogen causing the disease. There are no explicit symptoms mentioned in the context that are directly related to cytokine release syndrome markers in severe COVID-19.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.39462036433155
+    },
+    {
+      "query": "Gastrointestinal symptoms in COVID-19 and viral shedding",
+      "gold": {
+        "Symptoms": [
+          "diarrhea",
+          "nausea",
+          "vomiting",
+          "abdominal pain",
+          "loss of appetite"
+        ],
+        "Diagnostics": [
+          "stool RT-PCR",
+          "nasopharyngeal RT-PCR",
+          "liver function tests"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [],
+        "Pathogens": []
+      },
+      "raw_output": "Based on the retrieved context, the medical entities relevant to the user query are:\n\n```json\n{\n  \"Symptoms\": [\n    \"fever\",\n    \"dry cough\",\n    \"tiredness\",\n    \"breathing difficulty\",\n    \"nausea\",\n    \"vomiting\",\n    \"diarrhea\",\n    \"abdominal pain\",\n    \"anorexia\"\n  ],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\n    \"SARS-CoV-2\" // implied by \"COVID-19\"\n  ]\n}\n```\n\nNote: The context does not explicitly mention \"SARS-CoV-2\", but it is implied by the mention of \"COVID-19\". Also, there are no diagnostic entities mentioned in the context, so the \"Diagnostics\" list is empty.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.391004977817817
+    },
+    {
+      "query": "Kawasaki-like illness in children during COVID-19 pandemic",
+      "gold": {
+        "Symptoms": [
+          "prolonged fever",
+          "rash",
+          "conjunctivitis",
+          "lymphadenopathy",
+          "red cracked lips",
+          "extremity swelling"
+        ],
+        "Diagnostics": [
+          "echocardiography",
+          "C-reactive protein",
+          "erythrocyte sedimentation rate",
+          "BNP",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "anxiety",
+          "stress",
+          "emotional distress",
+          "depression",
+          "PTSD",
+          "alcohol abuse"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "SARS-CoV",
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the provided context, here is the extracted medical entities relevant to the query \"Kawasaki-like illness in children during COVID-19 pandemic\", categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [\n    \"anxiety\",\n    \"stress\",\n    \"emotional distress\",\n    \"depression\",\n    \"PTSD\",\n    \"alcohol abuse\"\n  ],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\n    \"SARS-CoV\",\n    \"COVID-19\"\n  ]\n}\n```\n\nNote that Kawasaki-like illness is not explicitly mentioned in the provided context, but the context does discuss the mental health impacts of the COVID-19 pandemic on children and adolescents, as well as the health impacts of the SARS-CoV outbreak. The extracted symptoms and pathogens are relevant to the broader topic of the COVID-19 pandemic and its effects on children's health.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.414559325431881
+    },
+    {
+      "query": "Respiratory monitoring in home management of mild COVID-19",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "mild dyspnea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "pulse oximetry",
+          "home temperature monitoring",
+          "rapid antigen test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "respiratory failure",
+          "acute hypoxic respiratory failure",
+          "viral myocarditis",
+          "thrombotic events",
+          "superimposed bacterial pneumonia"
+        ],
+        "Diagnostics": [
+          "oxygenation",
+          "fetal monitoring"
+        ],
+        "Pathogens": [
+          "COVID-19 virus",
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the provided context, here are the extracted medical entities relevant to respiratory monitoring in home management of mild COVID-19, categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [\n    \"respiratory failure\",\n    \"acute hypoxic respiratory failure\",\n    \"viral myocarditis\",\n    \"thrombotic events\",\n    \"superimposed bacterial pneumonia\"\n  ],\n  \"Diagnostics\": [\n    \"oxygenation\",\n    \"fetal monitoring\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19 virus\",\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nNote that some of these entities may be mentioned in the context as part of a larger discussion, but I have only extracted those that are directly relevant to respiratory monitoring in home management of mild COVID-19. Also, the context does not explicitly mention \"SARS-CoV-2\", but it is implied as the cause of COVID-19. If you would like me to exclude it, I can do so.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666
+          }
+        },
+        "micro": {
+          "precision": 0.1111111111111111,
+          "recall": 0.125,
+          "f1": 0.11764705882352941
+        }
+      },
+      "tokens_per_second": 4.427444825569254
+    },
+    {
+      "query": "Acute kidney injury in hospitalized COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "oliguria",
+          "edema",
+          "fatigue",
+          "nausea"
+        ],
+        "Diagnostics": [
+          "serum creatinine",
+          "blood urea nitrogen",
+          "urinalysis",
+          "urine output measurement",
+          "renal ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "acute kidney injury",
+          "acute liver injury"
+        ],
+        "Diagnostics": [
+          "prevalence rates"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, the extracted medical entities relevant to the query \"Acute kidney injury in hospitalized COVID-19 patients\" are:\n\n```json\n{\n  \"Symptoms\": [\n    \"acute kidney injury\",\n    \"acute liver injury\"\n  ],\n  \"Diagnostics\": [\n    \"prevalence rates\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}\n```\n\nNote that \"acute kidney injury\" and \"acute liver injury\" are classified as symptoms, as they are conditions or health effects being studied. \"Prevalence rates\" is classified as a diagnostic, as it is a measure used to understand the scope of the condition. \"COVID-19\" is classified as a pathogen, as it is the disease-causing agent being studied.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.259748566297727
+    },
+    {
+      "query": "COVID-19 in immunocompromised solid organ transplant recipients",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "dyspnea",
+          "diarrhea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "chest CT",
+          "C-reactive protein",
+          "lymphocyte count",
+          "drug level monitoring"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "cytomegalovirus"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "severe respiratory conditions"
+        ],
+        "Diagnostics": [
+          "ICD-9 codes",
+          "ICD-10 codes"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, the medical entities relevant to the user query \"COVID-19 in immunocompromised solid organ transplant recipients\" can be extracted and categorized as follows:\n\n```json\n{\n  \"Symptoms\": [\n    \"severe respiratory conditions\"\n  ],\n  \"Diagnostics\": [\n    \"ICD-9 codes\",\n    \"ICD-10 codes\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}\n```\n\nNote that the context does not provide explicit symptoms for COVID-19 in immunocompromised solid organ transplant recipients, but mentions \"severe respiratory conditions\" as a related condition. The ICD-9 and ICD-10 codes are used for diagnostics, and COVID-19 is the pathogen of interest.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.416489975972753
+    },
+    {
+      "query": "Pulmonary embolism screening in COVID-19 patients with worsening hypoxemia",
+      "gold": {
+        "Symptoms": [
+          "sudden dyspnea",
+          "chest pain",
+          "tachycardia",
+          "hemoptysis"
+        ],
+        "Diagnostics": [
+          "D-dimer",
+          "CT pulmonary angiography",
+          "venous duplex ultrasound",
+          "electrocardiogram"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "worsening respiratory status",
+          "worsening hypoxemia",
+          "symptoms of the disease"
+        ],
+        "Diagnostics": [
+          "CT imaging",
+          "RT-PCR testing",
+          "chest CT images",
+          "chest CT scan"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the provided context, I'll extract medical entities relevant to the query \"Pulmonary embolism screening in COVID-19 patients with worsening hypoxemia\" and categorize them into Symptoms, Diagnostics, and Pathogens.\n\n```json\n{\n  \"Symptoms\": [\n    \"worsening respiratory status\",\n    \"worsening hypoxemia\",\n    \"symptoms of the disease\"\n  ],\n  \"Diagnostics\": [\n    \"CT imaging\",\n    \"RT-PCR testing\",\n    \"chest CT images\",\n    \"chest CT scan\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}\n```\n\nNote that \"pulmonary embolism\" is not explicitly mentioned in the provided context, but it is related to the query. If more context were provided, it might be possible to extract more relevant information.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.4298712246479175
+    },
+    {
+      "query": "Dermatological manifestations associated with SARS-CoV-2 infection",
+      "gold": {
+        "Symptoms": [
+          "maculopapular rash",
+          "urticaria",
+          "chilblain-like lesions",
+          "livedo reticularis",
+          "vesicular rash"
+        ],
+        "Diagnostics": [
+          "skin biopsy",
+          "RT-PCR",
+          "SARS-CoV-2 antibody test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "ageusia",
+          "anosmia",
+          "sore throat",
+          "breathlessness",
+          "fatigue",
+          "malaise"
+        ],
+        "Diagnostics": [
+          "pneumonia",
+          "acute respiratory distress syndrome (ARDS)",
+          "multi organ dysfunction illness"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the provided context, I'll extract medical entities related to dermatological manifestations associated with SARS-CoV-2 infection. However, please note that the context does not explicitly mention dermatological manifestations. I'll provide a general response based on the available information.\n\nSince the context does not provide specific information on dermatological manifestations, I'll focus on the general medical entities mentioned:\n\n```json\n{\n  \"Symptoms\": [\n    \"fever\",\n    \"cough\",\n    \"ageusia\",\n    \"anosmia\",\n    \"sore throat\",\n    \"breathlessness\",\n    \"fatigue\",\n    \"malaise\"\n  ],\n  \"Diagnostics\": [\n    \"pneumonia\",\n    \"acute respiratory distress syndrome (ARDS)\",\n    \"multi organ dysfunction illness\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nPlease note that this response is based on the general information provided in the context and might not be directly related to dermatological manifestations associated with SARS-CoV-2 infection. If you have any further questions or provide more context, I'll be happy to help.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.08333333333333333,
+          "recall": 0.1111111111111111,
+          "f1": 0.09523809523809525
+        }
+      },
+      "tokens_per_second": 4.458516441441521
+    },
+    {
+      "query": "Elevated liver enzymes in COVID-19 clinical course",
+      "gold": {
+        "Symptoms": [
+          "jaundice",
+          "fatigue",
+          "abdominal pain",
+          "nausea"
+        ],
+        "Diagnostics": [
+          "ALT",
+          "AST",
+          "alkaline phosphatase",
+          "total bilirubin",
+          "abdominal ultrasound"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [
+          "liver enzymes",
+          "ALT",
+          "AST",
+          "TBIL concentration"
+        ],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, the medical entities relevant to the user query \"Elevated liver enzymes in COVID-19 clinical course\" can be extracted and categorized as follows:\n\n```json\n{\n  \"Symptoms\": [],\n  \"Diagnostics\": [\"liver enzymes\", \"ALT\", \"AST\", \"TBIL concentration\"],\n  \"Pathogens\": [\"COVID-19\"]\n}\n```\n\nNote that \"elevated liver enzymes\" is not explicitly categorized, as it is a condition rather than a specific medical entity. However, the individual liver enzymes (ALT, AST, TBIL concentration) that are elevated are categorized under \"Diagnostics\". COVID-19 is categorized under \"Pathogens\" as it is the causative agent of the disease.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.5,
+            "recall": 0.4,
+            "f1": 0.4444444444444445
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.4,
+          "recall": 0.2,
+          "f1": 0.26666666666666666
+        }
+      },
+      "tokens_per_second": 4.413884991593861
+    },
+    {
+      "query": "Pregnancy outcomes and vertical transmission risk of SARS-CoV-2",
+      "gold": {
+        "Symptoms": [
+          "fever",
+          "cough",
+          "dyspnea",
+          "myalgia",
+          "preterm labor"
+        ],
+        "Diagnostics": [
+          "RT-PCR",
+          "fetal ultrasound",
+          "cardiotocography",
+          "neonatal RT-PCR"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [
+          "RNA viraemia",
+          "viral RNA load",
+          "semen analysis"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the provided context, here are the extracted medical entities categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [],\n  \"Diagnostics\": [\"RNA viraemia\", \"viral RNA load\", \"semen analysis\"],\n  \"Pathogens\": [\"SARS-CoV-2\", \"COVID-19\"]\n}\n```\n\nNote that there are no explicit symptoms mentioned in the context, so the \"Symptoms\" category is empty. The \"Diagnostics\" category includes methods or tests used to detect or measure the presence of the pathogen, while the \"Pathogens\" category includes the actual diseases or viruses mentioned.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666
+          }
+        },
+        "micro": {
+          "precision": 0.2,
+          "recall": 0.1,
+          "f1": 0.13333333333333333
+        }
+      },
+      "tokens_per_second": 4.385924322678487
+    },
+    {
+      "query": "Mucormycosis secondary to COVID-19 corticosteroid therapy",
+      "gold": {
+        "Symptoms": [
+          "facial pain",
+          "nasal congestion",
+          "black eschar",
+          "periorbital swelling",
+          "vision loss",
+          "headache"
+        ],
+        "Diagnostics": [
+          "sinus CT",
+          "sinus MRI",
+          "KOH microscopy",
+          "fungal culture",
+          "tissue biopsy"
+        ],
+        "Pathogens": [
+          "Rhizopus",
+          "Mucor",
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "lung injury",
+          "lymphocyte counts",
+          "body temperature",
+          "creactive protein levels",
+          "oxygenation index"
+        ],
+        "Diagnostics": [
+          "viral load",
+          "coronavirus titers"
+        ],
+        "Pathogens": [
+          "COVID-19",
+          "coronavirus",
+          "Mucormycosis"
+        ]
+      },
+      "raw_output": "Based on the provided context, I'll extract medical entities relevant to the query \"Mucormycosis secondary to COVID-19 corticosteroid therapy\" and categorize them into Symptoms, Diagnostics, and Pathogens.\n\n```json\n{\n  \"Symptoms\": [\n    \"lung injury\",\n    \"lymphocyte counts\",\n    \"body temperature\",\n    \"creactive protein levels\",\n    \"oxygenation index\"\n  ],\n  \"Diagnostics\": [\n    \"viral load\",\n    \"coronavirus titers\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19\",\n    \"coronavirus\",\n    \"Mucormycosis\"\n  ]\n}\n```\n\nNote that Mucormycosis is mentioned in the user query but not in the original context. However, since it's a fungal infection that can be secondary to COVID-19 corticosteroid therapy, I've included it in the Pathogens category. The other extracted entities are based on the provided context.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.452772309921563
+    },
+    {
+      "query": "Oxygen therapy escalation in hospitalized COVID-19 pneumonia",
+      "gold": {
+        "Symptoms": [
+          "progressive dyspnea",
+          "hypoxemia",
+          "tachypnea",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "pulse oximetry",
+          "arterial blood gas",
+          "chest radiography",
+          "respiratory rate monitoring"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "respiratory failure",
+          "acute hypoxic respiratory failure",
+          "viral myocarditis",
+          "thrombotic events",
+          "superimposed bacterial pneumonia"
+        ],
+        "Diagnostics": [
+          "oxygenation",
+          "fetal monitoring"
+        ],
+        "Pathogens": [
+          "COVID-19 virus",
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the provided context, here are the extracted medical entities relevant to the user query, categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [\n    \"respiratory failure\",\n    \"acute hypoxic respiratory failure\",\n    \"viral myocarditis\",\n    \"thrombotic events\",\n    \"superimposed bacterial pneumonia\"\n  ],\n  \"Diagnostics\": [\n    \"oxygenation\",\n    \"fetal monitoring\"\n  ],\n  \"Pathogens\": [\n    \"COVID-19 virus\",\n    \"SARS-CoV-2\"\n  ]\n}\n```\n\nNote that some of these entities could fit into more than one category, but based on the context, I have assigned them to the most relevant category. Additionally, \"SARS-CoV-2\" is not explicitly mentioned in the context, but it is the virus that causes COVID-19, so I have included it in the Pathogens category.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666
+          }
+        },
+        "micro": {
+          "precision": 0.1111111111111111,
+          "recall": 0.1111111111111111,
+          "f1": 0.1111111111111111
+        }
+      },
+      "tokens_per_second": 4.456115392682468
+    },
+    {
+      "query": "SARS-CoV-2 antibody testing and seroprevalence studies",
+      "gold": {
+        "Symptoms": [
+          "asymptomatic infection",
+          "mild fever",
+          "cough",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "enzyme-linked immunosorbent assay",
+          "chemiluminescent immunoassay",
+          "neutralizing antibody assay",
+          "lateral flow immunoassay"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [],
+        "Diagnostics": [
+          "seroprevalence studies",
+          "SARS-CoV-2 antibody testing",
+          "blood samples",
+          "space-time disease mapping",
+          "cluster detection techniques"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "raw_output": "Based on the provided context, here is the extracted medical entities categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [],\n  \"Diagnostics\": [\"seroprevalence studies\", \"SARS-CoV-2 antibody testing\", \"blood samples\", \"space-time disease mapping\", \"cluster detection techniques\"],\n  \"Pathogens\": [\"SARS-CoV-2\"]\n}\n```\n\nNote that there are no explicit symptoms mentioned in the context, so the \"Symptoms\" category is empty. The \"Diagnostics\" category includes methods and techniques used to detect or study the disease, while the \"Pathogens\" category includes the specific virus being studied.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "micro": {
+          "precision": 0.16666666666666666,
+          "recall": 0.1111111111111111,
+          "f1": 0.13333333333333333
+        }
+      },
+      "tokens_per_second": 4.397650499252941
+    },
+    {
+      "query": "Sepsis and shock in critically ill COVID-19 patients",
+      "gold": {
+        "Symptoms": [
+          "hypotension",
+          "altered mental status",
+          "fever",
+          "tachypnea",
+          "oliguria"
+        ],
+        "Diagnostics": [
+          "lactate",
+          "blood culture",
+          "procalcitonin",
+          "SOFA score",
+          "arterial blood gas"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2",
+          "Staphylococcus aureus",
+          "Escherichia coli"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "Sepsis",
+          "ARDS (Acute Respiratory Distress Syndrome)",
+          "Multiple organ dysfunction syndrome (MODS)"
+        ],
+        "Diagnostics": [
+          "Pneumonia"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2 (Severe Acute Respiratory Syndrome Coronavirus 2)"
+        ]
+      },
+      "raw_output": "Based on the provided context, here are the extracted medical entities relevant to the query, categorized into Symptoms, Diagnostics, and Pathogens:\n\n```json\n{\n  \"Symptoms\": [\n    \"Sepsis\",\n    \"ARDS (Acute Respiratory Distress Syndrome)\",\n    \"Multiple organ dysfunction syndrome (MODS)\"\n  ],\n  \"Diagnostics\": [\n    \"Pneumonia\"\n  ],\n  \"Pathogens\": [\n    \"SARS-CoV-2 (Severe Acute Respiratory Syndrome Coronavirus 2)\"\n  ]\n}\n```\n\nNote that \"Cytokine storm syndrome\" is not explicitly categorized as it can be considered a condition or a pathological process rather than a symptom, diagnostic, or pathogen. However, it is mentioned in the context as a prominent modulator of sepsis, ARDS, and organ damage. If you would like to include it, it could be categorized under \"Symptoms\" or as a separate category for \"Conditions\" or \"Pathological processes\".",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.444361084166271
+    },
+    {
+      "query": "Post-COVID pulmonary fibrosis and chronic respiratory sequelae",
+      "gold": {
+        "Symptoms": [
+          "persistent dyspnea",
+          "exercise intolerance",
+          "dry cough",
+          "fatigue"
+        ],
+        "Diagnostics": [
+          "high-resolution chest CT",
+          "pulmonary function tests",
+          "diffusing capacity",
+          "six-minute walk test"
+        ],
+        "Pathogens": [
+          "SARS-CoV-2"
+        ]
+      },
+      "predicted": {
+        "Symptoms": [
+          "pulmonary fibrosis",
+          "cardiopulmonary damage",
+          "neurological damage",
+          "urological damage"
+        ],
+        "Diagnostics": [],
+        "Pathogens": [
+          "COVID-19"
+        ]
+      },
+      "raw_output": "Based on the retrieved context, the medical entities relevant to the user query \"Post-COVID pulmonary fibrosis and chronic respiratory sequelae\" can be extracted and categorized as follows:\n\n```json\n{\n  \"Symptoms\": [\n    \"pulmonary fibrosis\",\n    \"cardiopulmonary damage\",\n    \"neurological damage\",\n    \"urological damage\"\n  ],\n  \"Diagnostics\": [],\n  \"Pathogens\": [\n    \"COVID-19\"\n  ]\n}\n```\n\nNote that the context does not explicitly mention diagnostics related to post-COVID pulmonary fibrosis and chronic respiratory sequelae. The extracted symptoms are related to the long-term complications of COVID-19 infection, and the pathogen is the COVID-19 virus itself.",
+      "scores": {
+        "per_class": {
+          "Symptoms": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Diagnostics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "Pathogens": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "micro": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "tokens_per_second": 4.410459282133879
+    }
+  ]
+}

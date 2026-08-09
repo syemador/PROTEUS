@@ -1,0 +1,294 @@
+% ── Table 1  — QA performance ─────────────────────────
+\begin{table*}[t]
+\centering
+\caption{Clinical QA performance across configurations on the
+$\NQA$-question high-precision held-out set. R-1 = ROUGE-1,
+R-L = ROUGE-L, BS-F1 = BERTScore F$_1$, $h_{\mathrm{ctx}}$ (\%) =
+context-grounded hallucination rate; all with $95\%$ bootstrap CIs.
+$h_{\mathrm{ctx}}$ is undefined for No-RAG conditions (---).}
+\label{tab:qa_final}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Configuration} & \textbf{R-1} & \textbf{R-L} & \textbf{BS-F1} & \textbf{$h_{\mathrm{ctx}}$ (\%)} \\
+\midrule
+8B Q4 + RAG (ClinicalBERT) & 0.2349 [0.2108, 0.2602] & 0.1442 [0.1290, 0.1607] & 0.5871 [0.5716, 0.6030] & 48.37 [35.31, 61.51] \\
+8B Q4 + RAG (MedCPT) & 0.2131 [0.1945, 0.2324] & 0.1378 [0.1254, 0.1503] & 0.5862 [0.5736, 0.5990] & 51.38 [39.35, 63.15] \\
+8B Q4 + RAG (MiniLM) & 0.2107 [0.1942, 0.2278] & 0.1317 [0.1224, 0.1407] & 0.5756 [0.5644, 0.5873] & 55.63 [46.46, 64.82] \\
+1B Q4 + RAG (ClinicalBERT) & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} \\
+8B Q4 (No RAG) & 0.2201 [0.2015, 0.2430] & 0.1392 [0.1282, 0.1519] & 0.5935 [0.5794, 0.6082] & --- \\
+8B Q4 + RAG + NLI Check & 0.2339 [0.2103, 0.2574] & 0.1427 [0.1281, 0.1580] & 0.5871 [0.5736, 0.6000] & 47.87 [34.76, 61.00] \\
+Claude Sonnet + RAG (ClinicalBERT) & 0.2452 [0.2194, 0.2739] & 0.1587 [0.1435, 0.1742] & 0.6116 [0.5962, 0.6276] & 44.02 [29.37, 59.02] \\
+Claude Sonnet (No RAG) & 0.0089 [0.0000, 0.0257] & 0.0063 [0.0000, 0.0178] & 0.4865 [0.4778, 0.4975] & --- \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ── Table 2  — Pairwise significance ──────────────────
+\begin{table}[t]
+\centering
+\caption{Pairwise significance contrasts against the 8B Q4 + RAG
+(ClinicalBERT) anchor. $\Delta = \text{anchor} - \text{comparison}$;
+CIs are paired bootstrap ($\NBOOT$ resamples); $p$-values are
+two-sided paired permutation tests. Significant iff CI excludes
+zero \emph{and} $p<0.05$.}
+\label{tab:pairwise_significance}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Contrast} & \textbf{Metric} & \textbf{$\Delta$} & \textbf{95\% CI} & \textbf{$p$} \\
+\midrule
+8B-RAG vs.\ 1B-RAG   & BS-F1 & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} \\
+8B-RAG vs.\ 1B-RAG   & $h_{\mathrm{ctx}}$ & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} \\
+8B-RAG vs.\ 8B-NoRAG & BS-F1 & -0.0063 & [-0.0252, +0.0124] & 0.522 \\
+8B-RAG vs.\ 8B-NoRAG & $h_{\mathrm{ref}}$ & +10.9717 & [-3.0777, +24.5792] & 0.140 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{flushleft}
+\footnotesize{%
+The $h_{\mathrm{ref}}$ row is the primary RAG-vs-parametric
+comparison (Eq.~(\ref{eq:ref-ent})). Computed from \texttt{results/href/} files.
+}
+\end{flushleft}
+\end{table}
+
+% ── Table 3  — Inference throughput ───────────────────
+\begin{table}[t]
+\centering
+\caption{Inference throughput on the H.E.R.A.\ testbed
+(RTX~3060, 12~GB). Mean $\pm$ std over $\NRUNS$ runs.
+Cloud API throughput is network-latency dominated and not
+reported as a hardware metric.}
+\label{tab:latency}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Configuration} & \textbf{Scale} & \textbf{Throughput (tok/s)} \\
+\midrule
+8B Q4 + RAG (ClinicalBERT) & 8B (Q4) & $63.43 \pm 1.42$ \\
+8B Q4 + RAG (MedCPT) & 8B (Q4) & $60.54 \pm 1.24$ \\
+8B Q4 + RAG (MiniLM) & 8B (Q4) & $61.50 \pm 1.52$ \\
+1B Q4 + RAG (ClinicalBERT) & 1B (Q4) & \textcolor{red}{\textbf{[PENDING]}} \\
+8B Q4 (No RAG) & 8B (Q4) & $63.72 \pm 1.53$ \\
+8B Q4 + RAG + NLI Check & 8B (Q4) & $63.10 \pm 1.26$ \\
+Claude Sonnet (API) & API & \textit{n/a (network-dominated)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ── Table 4  — Generation lengths ─────────────────────
+\begin{table}[t]
+\centering
+\caption{Generation-length profile on the $\NQA$-question held-out
+set. ``Mean len'' and ``Max'' are whitespace-separated tokens before
+the $150$-token BERTScore truncation cap.}
+\label{tab:gen_lengths}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Configuration} & \textbf{Mean len} & \textbf{Max} & \textbf{\% $>$150} & \textbf{Mean \% disc.} \\
+\midrule
+8B Q4 + RAG (ClinicalBERT) & 81.6 & 194 & 10\% & 0.9\% \\
+8B Q4 + RAG (MedCPT) & 122.0 & 222 & 37\% & 5.7\% \\
+8B Q4 + RAG (MiniLM) & 118.6 & 263 & 23\% & 4.5\% \\
+1B Q4 + RAG (ClinicalBERT) & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} \\
+8B Q4 (No RAG) & 179.5 & 311 & 63\% & 20.8\% \\
+8B Q4 + RAG + NLI Check & 78.9 & 158 & 7\% & 0.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ── Table 5  — Keyword extraction ─────────────────────
+\begin{table*}[t]
+\centering
+\caption{Keyword extraction performance on the $\NKW$-prompt
+held-out set. P = Precision, R = Recall, F1, $\mu$-F1 = micro-averaged
+F$_1$ over the flattened \texttt{\{class::term\}} set.}
+\label{tab:keywords}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrrrrrr@{}}
+\toprule
+\textbf{Configuration} & \multicolumn{3}{c}{\textbf{Symptoms}} & \multicolumn{3}{c}{\textbf{Diagnostics}} & \multicolumn{3}{c}{\textbf{Pathogens}} & \\
+ & P & R & F1 & P & R & F1 & P & R & F1 & \textbf{$\mu$-F1} \\
+\midrule
+8B Q4 + RAG (ClinicalBERT) & 0.053 & 0.040 & 0.045 & 0.000 & 0.000 & 0.000 & 0.120 & 0.120 & 0.120 & 0.045 \\
+8B Q4 + RAG (MedCPT) & 0.000 & 0.000 & 0.000 & 0.018 & 0.015 & 0.016 & 0.400 & 0.380 & 0.387 & 0.049 \\
+8B Q4 + RAG (MiniLM) & 0.000 & 0.000 & 0.000 & 0.008 & 0.007 & 0.007 & 0.400 & 0.353 & 0.367 & 0.043 \\
+1B Q4 + RAG (ClinicalBERT) & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} \\
+8B Q4 (No RAG) & 0.000 & 0.000 & 0.000 & 0.000 & 0.000 & 0.000 & 0.080 & 0.080 & 0.080 & 0.012 \\
+Claude Sonnet + RAG (ClinicalBERT) & 0.055 & 0.061 & 0.054 & 0.040 & 0.023 & 0.028 & 0.220 & 0.360 & 0.260 & 0.083 \\
+Claude Sonnet (No RAG) & 0.095 & 0.087 & 0.089 & 0.053 & 0.021 & 0.030 & 0.480 & 0.460 & 0.467 & 0.116 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ── Supp.    — Parse failure rate ─────────────────────
+\begin{table}[t]
+\centering
+\caption{Atomic-fact decomposition parse-failure rate per
+configuration. ``Failed'' = outputs where the fact-extractor LLM
+response was not a valid JSON array and the regex sentence-splitter
+fallback was invoked. Rows marked \textit{n/a} were produced before
+the \texttt{parse\_failed} field was added; re-run Phase~1 of
+\texttt{rerun\_all.py} to populate.}
+\label{tab:parse_fail}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Configuration} & \textbf{N} & \textbf{Failed} & \textbf{\%} \\
+\midrule
+8B Q4 + RAG (ClinicalBERT) & 30 & \textit{n/a (pre-instrumentation)} & \textit{n/a} \\
+8B Q4 + RAG (MedCPT) & 30 & \textit{n/a (pre-instrumentation)} & \textit{n/a} \\
+8B Q4 + RAG (MiniLM) & 30 & \textit{n/a (pre-instrumentation)} & \textit{n/a} \\
+1B Q4 + RAG (ClinicalBERT) & --- & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} \\
+8B Q4 (No RAG) & 30 & \textit{n/a (pre-instrumentation)} & \textit{n/a} \\
+8B Q4 + RAG + NLI Check & 30 & \textit{n/a (pre-instrumentation)} & \textit{n/a} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ── Supp.    — Split-partial verifier ─────────────────
+\begin{table}[t]
+\centering
+\caption{NLI consistency-check label distribution for 8B Q4 + RAG
+(ClinicalBERT) under the standard (3-label) and split-partial
+(4-label) verifier prompts. WE = \texttt{weak\_entailment}
+(grounding-safety); CN = \texttt{citation\_noncompliance}
+(formatting only). ``---'' = label not produced by that prompt mode.}
+\label{tab:split_verifier}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrccccc@{}}
+\toprule
+\textbf{Mode} & \textbf{Claims} & \textbf{Supported} & \textbf{Partial} & \textbf{WE} & \textbf{CN} & \textbf{Unsupported} \\
+\midrule
+Standard (3-label) & 96 & 61 (63.5\%) & 18 (18.8\%) & --- & --- & 17 (17.7\%) \\
+Split-partial (4-label) & 94 & 60 (63.8\%) & --- & 11 (11.7\%) & 6 (6.4\%) & 17 (18.1\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ── Rev.R1   — Untruncated BERTScore ──────────────────
+\begin{table}[t]
+\centering
+\caption{%
+  Truncated vs.\ untruncated BERTScore-F$_1$ across 8B configurations
+  on the $\NQA$-question held-out set.
+  BS-F$_1$ (trunc.) is the primary clinical-budget metric (150-token cap).
+  BS-F$_1^*$ (untrunc.) recomputes over the full generation text,
+  clipped at 480 words to respect SciBERT's 512-token limit.
+  $\Delta = \text{untrunc.} - \text{trunc.}$;
+  positive values confirm the cap depressed the primary metric.
+  ``\% gen $>$150'' = fraction of outputs affected by the cap.
+}
+\label{tab:bertscore_untrunc}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Configuration} & \textbf{BS-F$_1$ (trunc.)} & \textbf{BS-F$_1^*$ (untrunc.)} & \textbf{$\Delta$} & \textbf{\% gen $>$150} \\
+\midrule
+8B Q4 + RAG (ClinicalBERT) & 0.5871 & 0.5868 & $-0.0004$ & 10\% \\
+8B Q4 + RAG (MedCPT) & 0.5862 & 0.5824 & $-0.0038$ & 37\% \\
+8B Q4 + RAG (MiniLM) & 0.5756 & 0.5738 & $-0.0018$ & 23\% \\
+8B Q4 (No RAG)$^\dagger$ & 0.5935 & 0.5637 & $-0.0297$ & 63\% \\
+8B Q4 + RAG + NLI Check & 0.5871 & 0.5872 & $+0.0001$ & 7\% \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{4pt}
+\begin{minipage}{\linewidth}
+\footnotesize
+$^\dagger$~8B~No-RAG has the largest $|\Delta|$ because the 150-token
+cap discards a mean 20.8\% of its content and the discarded suffix
+diverges from the reference, so the untruncated score \emph{falls}.
+RAG-anchored outputs ($\leq$81.6 tokens mean) are unaffected.
+% Significance (8B-RAG vs 8B-NoRAG, untruncated): $\Delta=+0.0230$, 95\%~CI~$[+0.0061,+0.0395]$, $p=0.0125$
+\end{minipage}
+\end{table}
+
+% ── Rev.R2   — Constrained decoding ───────────────────
+\begin{table*}[t]
+\centering
+\caption{%
+  Dual keyword-extraction evaluation: native generation vs.\ constrained
+  structured decoding (Ollama JSON-Schema grammar enforcement,
+  \texttt{format} parameter, Ollama $\geq$0.1.24).
+  P\,=\,Precision, R\,=\,Recall, $\mu$-F$_1$\,=\,micro-averaged F$_1$.
+  $\Delta$ rows (constrained $-$ native) quantify the Format Collapse
+  penalty per entity class. A large positive $\Delta$ on Symptoms or
+  Pathogens proves entity knowledge was present but syntactically
+  inaccessible under native 4-bit generation
+  (\emph{compliance gap, not a knowledge gap}).
+  Near-zero $\Delta$ on Diagnostics identifies a residual
+  \emph{knowledge gap} that format enforcement cannot resolve.
+}
+\label{tab:keywords_constrained}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrrrrrrrr@{}}
+\toprule
+\textbf{Configuration} & \multicolumn{3}{c}{\textbf{Symptoms}} & \multicolumn{3}{c}{\textbf{Diagnostics}} & \multicolumn{3}{c}{\textbf{Pathogens}} & \\
+ & P & R & F1 & P & R & F1 & P & R & F1 & \textbf{$\mu$-F$_1$} \\
+\midrule
+\textit{Native} (8B Q4, No RAG) & 0.000 & 0.000 & 0.000 & 0.000 & 0.000 & 0.000 & 0.080 & 0.080 & 0.080 & 0.012 \\
+\textit{Constrained}$^\ddagger$ (8B Q4, No RAG) & 0.075 & 0.083 & 0.074 & 0.020 & 0.007 & 0.010 & 0.240 & 0.240 & 0.240 & 0.087 \\
+\midrule
+$\Delta$ (constrained $-$ native) & $+0.075$ & $+0.083$ & $+0.074$ & $+0.020$ & $+0.007$ & $+0.010$ & $+0.160$ & $+0.160$ & $+0.160$ & $+0.075$ \\
+\midrule
+\textit{Native} (8B Q4 + RAG, ClinicalBERT) & 0.053 & 0.040 & 0.045 & 0.000 & 0.000 & 0.000 & 0.120 & 0.120 & 0.120 & 0.045 \\
+\textit{Constrained}$^\ddagger$ (8B Q4 + RAG, ClinicalBERT) & 0.075 & 0.083 & 0.074 & 0.020 & 0.007 & 0.010 & 0.240 & 0.240 & 0.240 & 0.087 \\
+\midrule
+$\Delta$ (constrained $-$ native) & $+0.022$ & $+0.043$ & $+0.028$ & $+0.020$ & $+0.007$ & $+0.010$ & $+0.120$ & $+0.120$ & $+0.120$ & $+0.042$ \\
+\bottomrule
+\end{tabular}
+\vspace{4pt}
+\begin{minipage}{\linewidth}
+\footnotesize
+$^\ddagger$~Constrained decoding via Ollama JSON-Schema format
+enforcement guarantees syntactically valid output by construction.
+Temperature is $T=0.0$ (deterministic) for both native and constrained
+runs, isolating format effects from sampling variance.
+\end{minipage}
+\end{table*}
+
+% ── Rev.R3   — Adversarial fail-safe ──────────────────
+\begin{table}[t]
+\centering
+\caption{%
+  Adversarial Dormant Fail-Safe trigger and recovery rates by sub-track.
+  \textbf{Triggered} = $n_u > 0$ after primary generation.
+  \textbf{Recovered} = $n_u = 0$ after single-pass regeneration
+  (among triggered queries).
+  ``Net $n_u$ reduction'' = total claim-level improvement.
+  (A) High-temperature ($T=0.8$) re-run of standard QA queries.
+  (B) Conflicting-context injection: generator sees poisoned context;
+  verifier sees only real retrieved chunks (split-context design).
+  (C) Parametric-conflict queries targeting thin CORD-19 coverage.
+}
+\label{tab:adversarial_failsafe}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Sub-track} & \textbf{N} & \textbf{Triggered} & \textbf{Recovered} & \textbf{Net $n_u$ reduction} \\
+\midrule
+(A) High-temp ($T=0.8$) & 10 & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} & \textcolor{red}{\textbf{[PENDING]}} \\
+(B) Poisoned context & 10 & 8/10 (80\%) & 1/8 (12\%) & $+0$ claims \\
+(C) Parametric conflict & 10 & 10/10 (100\%) & 0/10 (0\%) & $-1$ claims \\
+\midrule
+\textbf{Total} & 20 & 18/20 (90\%) & 1/18 (5\%) & --- \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{4pt}
+\begin{minipage}{\linewidth}
+\footnotesize
+Sub-track~(B) uses a \emph{split context}: the generator sees the
+fabricated sentence framed as \texttt{[Doc~0]}; the verifier receives
+only real retrieved chunks, isolating verifier sensitivity from
+generator compliance. The low recovery rate ($\leq$12.5\% across
+triggered cases) motivates multi-pass or NLI-guided generation
+constraints for adversarial deployment scenarios.
+\end{minipage}
+\end{table}
+

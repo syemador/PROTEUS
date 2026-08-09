@@ -1,0 +1,43 @@
+% ── Experiment 3: Adversarial Fail-Safe Table ───────────────────────────────
+% INSERT INTO \paragraph{RQ4} IN \section{Discussion and Limitations}
+% after the existing "Dormant Fail-Safe" sub-paragraph
+
+\begin{table}[t]
+\centering
+\caption{%
+  Adversarial Dormant Fail-Safe trigger and recovery rates by sub-track.
+  \textbf{Triggered} = $n_u > 0$ after primary generation.
+  \textbf{Recovered} = $n_u = 0$ after single-pass regeneration (among triggered queries).
+  ``Net $n_u$ reduction'' = total claim-level improvement across the sub-track.
+  Sub-track~A: high-temperature ($T=0.8$) re-run of $10$ standard QA queries.
+  Sub-track~B: $10$ conflicting-context injections (generator sees poisoned context;
+  verifier sees only real retrieved chunks).
+  Sub-track~C: $10$ parametric-conflict queries targeting thin CORD-19 corpus coverage.
+}
+\label{tab:adversarial_failsafe}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Sub-track} & \textbf{N} & \textbf{Triggered} &
+  \textbf{Recovered} & \textbf{Net $n_u$ reduction} \\
+\midrule
+High-temp ($T=0.8$) & 10 & \PH{} & \PH{} & \PH{} \\
+Poisoned context & 10 & 8/10 (80\%) & 1/8 (12\%) & $+0$ claims \\
+Parametric conflict & 10 & 10/10 (100\%) & 0/10 (0\%) & $-1$ claims \\
+\midrule
+\textbf{Total} & 20 &
+  18/20 (90\%) & 1/18 (5\%) & --- \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{4pt}
+\begin{minipage}{\linewidth}
+\footnotesize
+Sub-track~B uses a \emph{split context}: the generator prompt includes the
+fabricated sentence framed as \texttt{[Doc~0]} so the model is maximally
+likely to incorporate it; the verifier receives only real retrieved chunks,
+so any claim derived from the fabricated sentence has no NLI support.
+This design isolates \emph{verifier sensitivity} from \emph{generator compliance}.
+\end{minipage}
+\end{table}

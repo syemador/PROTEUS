@@ -1,0 +1,12 @@
+{
+  "dataset_config": null,
+  "dataset_id": "pritamdeka/cord-19-fulltext",
+  "dataset_split": "train",
+  "dtype": "torch.float32",
+  "embed_dim": 384,
+  "encoder_model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "max_documents": 500,
+  "n_chunks": 259,
+  "shuffle_seed": 42,
+  "version": 2
+}

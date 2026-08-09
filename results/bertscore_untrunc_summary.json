@@ -1,0 +1,79 @@
+{
+  "experiment": "Exp2_UntruncatedBERTScore",
+  "bertscore_model": "allenai/scibert_scivocab_uncased",
+  "scibert_safe_clip_words": 480,
+  "original_truncation_words": 150,
+  "conditions": {
+    "8B Q4 + RAG (ClinicalBERT)": {
+      "filename": "qa_8b_rag_cbert.json",
+      "is_rag": true,
+      "n": 30,
+      "bs_f1_trunc_mean": 0.5871440380811691,
+      "bs_f1_trunc_std": 0.043860987770201594,
+      "bs_f1_untrunc_mean": 0.5867696404457092,
+      "bs_f1_untrunc_std": 0.04435017332434654,
+      "delta_untrunc_minus_trunc_mean": -0.0003744701544443766,
+      "n_gen_over_150": 3,
+      "pct_gen_over_150": 10.0
+    },
+    "8B Q4 + RAG (MedCPT)": {
+      "filename": "qa_8b_rag_medcpt.json",
+      "is_rag": true,
+      "n": 30,
+      "bs_f1_trunc_mean": 0.5861680249373118,
+      "bs_f1_trunc_std": 0.035600981168171515,
+      "bs_f1_untrunc_mean": 0.5823573470115662,
+      "bs_f1_untrunc_std": 0.035993412137031555,
+      "delta_untrunc_minus_trunc_mean": -0.0038107136885325112,
+      "n_gen_over_150": 11,
+      "pct_gen_over_150": 36.666666666666664
+    },
+    "8B Q4 + RAG (MiniLM)": {
+      "filename": "qa_8b_rag_minilm.json",
+      "is_rag": true,
+      "n": 30,
+      "bs_f1_trunc_mean": 0.575612469514211,
+      "bs_f1_trunc_std": 0.03208665442144849,
+      "bs_f1_untrunc_mean": 0.5738012790679932,
+      "bs_f1_untrunc_std": 0.033295147120952606,
+      "delta_untrunc_minus_trunc_mean": -0.0018111964066823323,
+      "n_gen_over_150": 7,
+      "pct_gen_over_150": 23.333333333333332
+    },
+    "8B Q4 (No RAG)": {
+      "filename": "qa_8b_norag.json",
+      "is_rag": false,
+      "n": 30,
+      "bs_f1_trunc_mean": 0.5934636354446411,
+      "bs_f1_trunc_std": 0.040807541777208536,
+      "bs_f1_untrunc_mean": 0.5637483596801758,
+      "bs_f1_untrunc_std": 0.033143915235996246,
+      "delta_untrunc_minus_trunc_mean": -0.02971526384353638,
+      "n_gen_over_150": 19,
+      "pct_gen_over_150": 63.333333333333336
+    },
+    "8B Q4 + RAG + NLI Check": {
+      "filename": "qa_8b_rag_cbert_ver.json",
+      "is_rag": true,
+      "n": 30,
+      "bs_f1_trunc_mean": 0.5871382623910903,
+      "bs_f1_trunc_std": 0.036798076773421076,
+      "bs_f1_untrunc_mean": 0.5872378945350647,
+      "bs_f1_untrunc_std": 0.0367124117910862,
+      "delta_untrunc_minus_trunc_mean": 9.96708869934082e-05,
+      "n_gen_over_150": 2,
+      "pct_gen_over_150": 6.666666666666667
+    }
+  },
+  "significance": {
+    "8B_RAG_vs_NoRAG_untrunc": {
+      "delta": 0.023021196325620014,
+      "ci_95": [
+        0.006093468392888705,
+        0.03945958495140074
+      ],
+      "p": 0.0125,
+      "significant": true
+    }
+  }
+}
